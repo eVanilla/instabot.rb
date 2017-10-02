@@ -1,8 +1,12 @@
-require_relative 'modules'
-require 'pp'
+require_relative './modules/modules.rb'
 class Instabot
-	# => Configuration
+
 	include Config
+	include Banner
+	include Login
+	include Actions
+	include Protocol
+
 	def options
 		return {
 			:username 				=> 		Config.options.username,
@@ -14,6 +18,17 @@ class Instabot
 			:white_list_users 		=> 		Config.options.white_list_users	
 		}
 	end
+
+	def initialize
+		
+		@login_status 	= false
+		@modules_dir 	= "#{Dir.pwd}/modules"
+		@root_dir 		= "#{Dir.pwd}"
+		print_banner()
+		create_mechanic
+		login
+
+	end	# => default configurations
 
 
 end

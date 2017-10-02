@@ -1,0 +1,39 @@
+---
+www.instagram.com:
+  "/":
+    rur: !ruby/object:Mechanize::Cookie
+      name: rur
+      value: ATN
+      domain: www.instagram.com
+      for_domain: false
+      path: "/"
+      secure: false
+      httponly: false
+      expires: 
+      max_age: 
+      created_at: &1 2017-09-27 16:22:39.956309000 +03:30
+      accessed_at: *1
+    csrftoken: !ruby/object:Mechanize::Cookie
+      name: csrftoken
+      value: rJGPTHTC9WPVUxeGGw39QmyvI6rXgOLy
+      domain: www.instagram.com
+      for_domain: false
+      path: "/"
+      secure: true
+      httponly: false
+      expires: Wed, 26 Sep 2018 12:52:39 GMT
+      max_age: 
+      created_at: &2 2017-09-27 16:22:39.957309000 +03:30
+      accessed_at: *2
+    mid: !ruby/object:Mechanize::Cookie
+      name: mid
+      value: WcufFgAEAAEEXMzXHVEhvjxt_W8G
+      domain: www.instagram.com
+      for_domain: false
+      path: "/"
+      secure: false
+      httponly: false
+      expires: Tue, 22 Sep 2037 12:52:39 GMT
+      max_age: 
+      created_at: &3 2017-09-27 16:22:39.957309000 +03:30
+      accessed_at: *3
