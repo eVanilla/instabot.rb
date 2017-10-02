@@ -14,7 +14,7 @@ end
 bot = Instabot.new
 
 
-bot.follow(53703081)
-bot.unfollow(53703081)
-bot.like(537030812)
-bot.comment(537030812,"test comment")
+bot.follow(00000000)
+bot.unfollow(00000000)
+bot.like(00000000)
+bot.comment(00000000,"test comment")
