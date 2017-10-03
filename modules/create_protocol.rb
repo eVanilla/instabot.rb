@@ -1,9 +1,10 @@
 module Protocol
 	def create_mechanic
 		puts Dir.glob("")
-		@agent = Mechanize.new
-		@agent.log = Logger.new(STDOUT)
-		@agent.ca_file = "#@modules_dir/cacert.pem"
+		@agent 					= Mechanize.new
+		@agent.max_history 		= 2
+		# @agent.log 				= Logger.new(STDOUT)
+		@agent.ca_file			= "#@modules_dir/cacert.pem"
 		@agent.user_agent_alias = "Mac Safari"
 		# @agent.set_proxy()
 	end

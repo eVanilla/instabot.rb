@@ -4,9 +4,6 @@ module Banner
     puts <<-BANNER
       testing the banner location ...
     BANNER
-
-
   end
-
 
 end
