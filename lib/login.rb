@@ -3,6 +3,7 @@ module Login
 	def login
 		
 		log("trying to login")
+		puts "trying to login ..."
 		login_page = @agent.get("https://www.instagram.com/accounts/login/?force_classic_login")
 		page_form = login_page.forms.last
 		page_form.username = options[:username]
@@ -10,6 +11,7 @@ module Login
 		page = page_form.submit
 		@login_status = true
 		log("successfully logged in")
+		puts "successfully logged in"
 	
 	rescue Exception => e
 
@@ -20,6 +22,7 @@ module Login
 	end
 
 	def check_login_status
+		puts "cheking login status"
 		log("checking loging status")
 		unless @login_status
 			

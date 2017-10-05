@@ -4,7 +4,7 @@ module Protocol
 		@agent 					= Mechanize.new
 		@agent.max_history 		= 2
 		# @agent.log 				= Logger.new(STDOUT)
-		@agent.ca_file			= "#@modules_dir/cacert.pem"
+		@agent.ca_file			= "#@lib_dir/cacert.pem"
 		@agent.user_agent_alias = "Mac Safari"
 		# @agent.set_proxy()
 	end
@@ -12,8 +12,8 @@ module Protocol
 
 	def get_page(url)
 		@page = @agent.get(url)
-		@temp_jar = @agent.cookie_jar
-		@temp_jar.save("#{@modules_dir}/cookies.yaml", session: true)	# => saving the cookies
+		# @temp_jar = @agent.cookie_jar
+		# @temp_jar.save("#{@lib_dir}/cookies.yaml", session: true)	# => saving the cookies
 	end
 
 
