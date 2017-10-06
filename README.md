@@ -25,6 +25,6 @@ bot.comment(537030812, "test comment")
 
 # What's new in the future ?
 
-[-] fully automatic actions
-[-] &...
+fully automatic actions
+&...
 
