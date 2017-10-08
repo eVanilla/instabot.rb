@@ -9,11 +9,11 @@ module Modes
 				unless @maximums[:max_likes_per_day] == @maximums[:likes_in_day] && @maximums[:max_follows_per_day] == @maximums[:follows_in_day] && @maximums[:max_unfollows_per_day] == @maximums[:unfollows_in_day] && @maximums[:max_comments_per_day]== @maximums[:comments_in_day]
 					
 
-					# if @maximums[:follows_in_day] != @maximums[:max_follows_per_day]
-					# 	auto_follow 
-					# else
-					# 	puts "maximum follows per day!"
-					# end
+					if @maximums[:follows_in_day] != @maximums[:max_follows_per_day]
+						auto_follow 
+					else
+						puts "maximum follows per day!"
+					end
 
 					# if @maximums[:unfollows_in_day] != @maximums[:max_unfollows_per_day]
 					# 	auto_unfollow
