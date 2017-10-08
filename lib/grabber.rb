@@ -32,8 +32,8 @@ module Grabber
 	end
 
 	def get_media_informations(media_id)
-		puts "trying to get media (#{media_id}) information"
 		puts "=".cyan*10
+		puts "trying to get media (#{media_id}) information"
 		media_info 	= @agent.get("https://www.instagram.com/p/#{media_id}/?__a=1")
 		data 		= JSON.parse(media_info.body)
 		data.extend Hashie::Extensions::DeepFind

@@ -1,19 +1,23 @@
 module Log
 
+	def check_log_file
+		if !File.exists?(@logs_dir)
+			Dir.mkdir(@logs_dir)
+		end
+		
+		if File.exists?("#{@logs_dir}/logs.log")
+			File.delete("#{@logs_dir}/logs.log")
+		end
+	end
+
 	def write_file(filename, text="")
-		File.open("#{logs_dir}/#{filename}") {|file| file.puts "#{text},"}
+		File.open("#{@logs_dir}/#{filename}", "a+") {|file| file.print "#{text.chomp},"}
 	end
 
 	def log(text="",from="")
 		time = Time.new.strftime("%H:%M:%S %y-%m-%d")
-		if !File.exists?(@logs_dir)
-			Dir.mkdir(@logs_dir)
-		elsif File.exists?("#{@logs_dir}/logs.log")
-			File.delete("#{@logs_dir}/logs.log")
-		else
-			File.open("#{@logs_dir}/logs.log","a+") do |log_file|
-				log_file.puts "[#{@log_counter}] [#{time}] [#{from}] -- : #{text}"
-			end
+		File.open("#{@logs_dir}/logs.log","a+") do |log_file|
+			log_file.puts "[#{@log_counter}] [#{time}] [#{from}] -- : #{text}"
 		end
 		@log_counter += 1
 	end

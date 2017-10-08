@@ -1,7 +1,7 @@
 module Actions
 	
 	def follow(user_id)
-		unless @follows_in_day == @max_follows_per_day		
+			puts "trying to follow a user [#{user_id}]"
 			log("trying to follow a user [#{user_id}]")
 			check_login_status
 			follow_url = "https://www.instagram.com/web/friendships/#{user_id}/follow/"
@@ -9,11 +9,10 @@ module Actions
 			followed_page = @agent.post(follow_url, @params, @headers)
 			puts "User followed!".bold.cyan
 			save_action_data user_id, :follow
-		end
 	end
 
 	def unfollow(user_id)
-		unless @unfollows_in_day == @max_unfollows_per_day		
+			puts "trying to unfollow a user [#{user_id}]"	
 			log("trying to unfollow a user [#{user_id}]")
 			check_login_status
 			unfollow_url = "https://www.instagram.com/web/friendships/#{user_id}/unfollow/"
@@ -21,31 +20,28 @@ module Actions
 			followed_page = @agent.post(unfollow_url, @params, @headers)
 			puts "user unfollowed!".bold.cyan
 			save_action_data user_id, :unfollow
-		end
 	end
 
 	def comment(media_id=0, text="")
-		unless @comments_in_day == @max_comments_per_day		
-			log("trying to send a comment to media[#{user_id}]")
+			puts "trying to send a comment to media[#{media_id}]"	
+			log("trying to send a comment to media[#{media_id}]")
 			check_login_status
 			comment_url = "https://www.instagram.com/web/comments/#{media_id}/add/"
 			set_mechanic_data({ comment_text: text.to_s })
 			followed_page = @agent.post(comment_url, @params, @headers)
 			puts "comment successfully has been sent!".bold.cyan
 			save_action_data media_id, :comment
-		end
 	end
 
 	def like(media_id)
-		unless @likes_in_day == @max_likes_per_day		
-			log("trying to like a media[#{user_id}]")
+			puts "trying to like a media[#{media_id}]"	
+			log("trying to like a media[#{media_id}]")
 			check_login_status
 			comment_url = "https://www.instagram.com/web/likes/#{media_id}/like/"
 			set_mechanic_data
 			followed_page = @agent.post(comment_url, @params, @headers)
-			puts "comment successfully has been sent!".bold.cyan
+			puts "media liked!".bold.cyan
 			save_action_data media_id, :like
-		end
 	end
 
 
