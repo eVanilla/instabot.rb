@@ -5,36 +5,46 @@ module Modes
 		when :auto
 			puts "in auto mode".yellow
 			search(options[:tags])
-			while true
-				unless @maximums[:max_likes_per_day] == @maximums[:likes_in_day] && @maximums[:max_follows_per_day] == @maximums[:follows_in_day] && @maximums[:max_unfollows_per_day] == @maximums[:unfollows_in_day] && @maximums[:max_comments_per_day]== @maximums[:comments_in_day]
-					
+			@next_day = Time.new + 10.second
 
+			while true
+				# if @maximums[:likes_in_day] != @maximums[:max_likes_per_day] && @maximums[:follows_in_day] != @maximums[:max_follows_per_day] && @maximums[:unfollows_in_day] != @maximums[:max_unfollows_per_day] &&  @maximums[:comments_in_day] != @maximums[:max_comments_per_day]	
+				if !maximums_are_full?
+					puts "in actions ...".red
 					if @maximums[:follows_in_day] != @maximums[:max_follows_per_day]
-						auto_follow 
+						@maximums[:follows_in_day] += 1
+						# auto_follow 
 					else
 						puts "maximum follows per day!"
 					end
 
-					# if @maximums[:unfollows_in_day] != @maximums[:max_unfollows_per_day]
-					# 	auto_unfollow
-					# else
-					# 	puts "maximum unfollows per day!"
-					# end
+					if @maximums[:unfollows_in_day] != @maximums[:max_unfollows_per_day]
+						@maximums[:unfollows_in_day] += 1
+						# auto_unfollow
+					else
+						puts "maximum unfollows per day!"
+					end
 
 					if @maximums[:likes_in_day] != @maximums[:max_likes_per_day]
-						auto_like
+						@maximums[:likes_in_day] += 1
+						# auto_like
 					else
 						puts "maximum likes per day!"
 					end
 
 					if @maximums[:comments_in_day] != @maximums[:max_comments_per_day]
-						auto_comment
+						@maximums[:comments_in_day] += 1
+						# auto_comment
 					else
 						puts "maximum comments per day!"
 					end
+					puts "maximums = #{@maximums}"
 					
 					# exit
-
+				else
+					puts "in check date ... "
+					check_date
+					sleep 1
 				end
 			end
 		when :cleanup
@@ -45,6 +55,7 @@ module Modes
 			# end
 		when :default
 			puts "please choose a mode"
+			# => ...
 		end
 	end
 
@@ -76,23 +87,28 @@ module Modes
 		# end
 	end
 
-	# def auto_unfollow
-	# 	# users.each do |user|
-	# 	all_users 	= users
-	# 	puts "all users = #{all_users}"
-	# 	id 			= 0
-	# 	while @maximums[:unfollows_in_day] < @maximums[:max_unfollows_per_day]
-	# 		get_user_informations(all_users[id])
-	# 		puts "user informations:".cyan
-	# 		@informations.map {|key,val| puts "#{key}: #{val}"}
-	# 		unfollow(@informations[:id])
-	# 		@maximums[:unfollows_in_day] += 1
-	# 		id += 1
-	# 		puts "unfollows_in_day = #{@maximums[:unfollows_in_day]} || max_unfollows_per_day = #{@maximums[:max_unfollows_per_day]} || id = #{id}"
-	# 		fall_in_asleep
-	# 	end
-	# 	# end
-	# end
+	def auto_unfollow
+		# users.each do |user|
+		unfollowed_users = @local_stroage[:unfollowed_users]
+		puts "all unfollowed users = #{unfollowed_users}"
+		id 			= 0
+		while @maximums[:unfollows_in_day] < @maximums[:max_unfollows_per_day]
+			if @local_stroage[:followed_users].size < @maximums[:max_unfollows_per_day]
+				# get_user_informations(unfollowed_users[id])
+				# puts "user informations:".cyan
+				# @informations.map {|key,val| puts "#{key}: #{val}"}
+				puts "unfollowed_users[id] => #{unfollowed_users[id]}"
+				unfollow(unfollowed_users[id])
+				@maximums[:unfollows_in_day] += 1
+				id += 1
+				puts "unfollows_in_day = #{@maximums[:unfollows_in_day]} || max_unfollows_per_day = #{@maximums[:max_unfollows_per_day]} || id = #{id}"
+				fall_in_asleep
+			else
+				puts "bla bla bla"
+				break
+			end
+		end
+	end
 
 	def auto_like
 		# medias.each do |media|
@@ -136,11 +152,50 @@ module Modes
 		return "#{first} #{second} #{third} #{fourth}#{fifth}"
 	end
 
+	def check_date
+		puts "checking time ..."
+		time = ((@next_day) - Time.new).to_i # => seconds elapsed ...
+		puts "next day = #{@next_day}"
+		if time == 0
+			puts "its a new day!"
+			@local_stroage[:followed_users] 	= []
+			@local_stroage[:unfollowed_users] 	= []
+			@local_stroage[:liked_medias] 		= []
+			@local_stroage[:commented_medias] 	= []
+			@maximums[:follows_in_day] 		= 0 
+			@maximums[:unfollows_in_day] 	= 0
+			@maximums[:likes_in_day] 		= 0
+			@maximums[:comments_in_day] 	= 0
+			# time = (((Time.new + 1.days).to_f - Time.new.to_f) * 24 * 60 * 60).to_i
+			@next_day = Time.new + 1.days
+			puts "new next day = #{@next_day}"
+			puts "new maximums = #{@maximums}"
+			puts "new local stroage = #{@local_stroage}"
+			puts "="*10
+		else
+			puts "#{time} seconds elapsed..."
+		end 
+			# return true
+	end
+
 	def fall_in_asleep
 		time = options[:wait_per_action]
 		puts "waiting for #{time}"
 		sleep time
 	end
+
+	def maximums_are_full?
+		if @maximums[:likes_in_day] == @maximums[:max_likes_per_day] && @maximums[:follows_in_day] == @maximums[:max_follows_per_day] && @maximums[:unfollows_in_day] == @maximums[:max_unfollows_per_day] && @maximums[:comments_in_day] == @maximums[:max_comments_per_day]
+			return true
+		else
+			return false
+		end
+	end
+
+
+
+
+
 
 
 end

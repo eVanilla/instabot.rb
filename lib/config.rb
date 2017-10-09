@@ -10,7 +10,7 @@ module Config
 	end
 
 	class Configuration
-		attr_accessor :username, :password, :tags, :comments, :wait_per_action, :max_like_per_day, :max_follow_per_day, :max_unfollow_per_day, :max_comment_per_day, :unwanted_list, :white_list_users
+		attr_accessor :username, :password, :tags, :comments, :pre_load, :wait_per_action, :max_like_per_day, :max_follow_per_day, :max_unfollow_per_day, :max_comment_per_day, :unwanted_list, :white_list_users
 		def initialize
 			@username,
 			@password,
@@ -23,6 +23,9 @@ module Config
 			@comments,
 			@wait_per_action,
 			@white_list_users = nil
+			
+			@pretty_print = false
+			@pre_load = false
 		end	
 	end
 
