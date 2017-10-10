@@ -1,5 +1,5 @@
 Dir.glob("#{Dir.pwd}/lib/*.rb").each {|file| require_relative file}
-%w[colorize mechanize hashie json logger pp active_support/core_ext/numeric/time rbconfig].each {|gem| require gem} 
+%w[colorize mechanize io/console hashie json logger pp active_support/core_ext/numeric/time rbconfig].each {|gem| require gem} 
 
 class Instabot
 
@@ -42,8 +42,7 @@ class Instabot
 			:max_comments_per_day 	=> options[:max_comment_per_day]
 		}
 
-		pp "maximums: #{@maximums}"
-
+		# pp "maximums: #{@maximums}"
 		# @os ||= (
 		# 	host_os = RbConfig::CONFIG['host_os']
 		# 	case host_os
@@ -61,12 +60,9 @@ class Instabot
 		# )
 
 
-
+		intro
 		
-		# print_banner
-		check_log_files
-		create_mechanic
-		login
+
 
 	end
 
@@ -91,13 +87,41 @@ class Instabot
 		}
 	end
 
-	def custom_print(text="", mode=options[:pretty_print],color="white")
-		if mode
-			puts "#{text}".colorize(color: color.to_sym, background: "default")
-		else
+	def custom_puts(text="")
+		pretty_print_mode = options[:pretty_print]
+		if pretty_print_mode
 			puts "#{text}"
+		else
+			puts "#{text}".colorize(color: :white, background: :default)
 		end
 	end
 	
+	def custom_print(text="")
+		pretty_print_mode = options[:pretty_print]
+		empty_space =  IO.console.winsize[1] - text.size
+		empty_space = 0 if empty_space < 0 
+		if pretty_print_mode
+			print "\r#{text}"
+			$stdout.flush
+			print  " " * empty_space
+			# IO.console.flush
+		else
+			print "#{text}\n".white
+		end
+	end
+
+
+
+	def intro
+		trap("INT") { exit! }
+		print_banner
+		check_log_files
+		create_mechanic
+		custom_print "[+] ".cyan + "Processing successfully completed"
+		puts
+		login
+
+	end
+
 
 end

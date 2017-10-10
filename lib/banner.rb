@@ -2,7 +2,7 @@ module Banner
 
   def print_banner()
     puts <<-BANNER
-      testing the banner location ...
+banner location ...
     BANNER
   end
 

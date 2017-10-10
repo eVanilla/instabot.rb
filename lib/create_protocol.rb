@@ -7,6 +7,7 @@ module Protocol
 		@agent.ca_file			= "#@lib_dir/cacert.pem"
 		@agent.user_agent_alias = "Mac Safari"
 		# @agent.set_proxy()
+		custom_print "PROCESSING: ".cyan.bold + "protocol created"
 	end
 
 

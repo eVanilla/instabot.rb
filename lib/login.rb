@@ -2,7 +2,7 @@ module Login
 
 	def login
 		log("trying to login")
-		puts "trying to login ..."
+		custom_print "[+] ".cyan + "Trying to login into [#{options[:username]}] account"
 		login_page = @agent.get("https://www.instagram.com/accounts/login/?force_classic_login")
 		page_form = login_page.forms.last
 		page_form.username = options[:username]
@@ -10,28 +10,29 @@ module Login
 		page = page_form.submit
 		@login_status = true
 		log("successfully logged in")
-		puts "successfully logged in"
+		custom_print "[+] ".cyan + "Successfully logged in".green.bold
+		puts
 	rescue Exception => e
-		log("an error detected: #{e}")
+		log("a error detected: #{e.class} #{e}")
 		@login_status = false
-		puts "#{e.class} #{e.message}\n====================\n#{e}".red
+		custom_print "[-] ".cyan + "#{e.class} #{e.message}\n#{e}".red
 	end
 
 	def logout
 		log("trying to logout")
-		puts "logging out ..."
+		custom_print "[+] ".cyan + "Trying to logging out"
 		logout_page = @agent.get("https://www.instagram.com/accounts/logout/")
 		@logout_status = true
 		log("successfully logged out")
-		puts "successfully logged out."
+		custom_print "[+] ".cyan + "Successfully logged out"
 	end
 
 	def check_login_status
-		puts "cheking login status"
+		custom_print "[+] ".cyan + "Checking login status"
 		log("checking loging status")
 		unless @login_status
 			
-			puts "you're not logged in.".red.bold
+			custom_print "[-] ".cyan + "you're not logged in.".red.bold
 			login
 
 		end

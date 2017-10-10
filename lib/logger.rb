@@ -1,6 +1,7 @@
 module Log
 
-	def check_log_file
+	def check_log_files
+		custom_print "PROCESSING: ".cyan.bold + "checking log files"
 		if !File.exists?(@logs_dir)
 			Dir.mkdir(@logs_dir)
 		end
