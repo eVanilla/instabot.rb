@@ -2,7 +2,8 @@
 A instagram bot works without instagram api, only needs your username and password. writted with ruby
 if you like it ... just hit the star button to make me happy! (≖ᴗ≖✿)
  
-![#](https://img.shields.io/badge/status-under%20construction-ff69b4.svg)
+![#](https://img.shields.io/badge/status-under%20construction-ff69b4.svg?style=for-the-badge)
+![#](https://img.shields.io/badge/can%20i%20use%20it%3F-yes-brightgreen.svg?style=for-the-badge)
 
 # installation
 
