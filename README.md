@@ -15,7 +15,7 @@ and make sure you installed the bundler gem and then type this command in projec
 ```
 bundle install
 ```
-> Bundler will download and install all the dependencies and gems i used
+> Bundler will download and install all the dependencies and gems
 
 # Usage
 here is the **manual** usage or example:
