@@ -32,10 +32,10 @@ end
 
 bot = Instabot.new
 
-bot.follow(53703081)
-bot.unfollow(53703081)
-bot.like(537030812)
-bot.comment(537030812, "test comment")
+bot.follow(11111111) # user id
+bot.unfollow(11111111) # user id
+bot.like(1111111) # media id
+bot.comment(1111111, "test comment") # media id
 ```
 
 if you want to make it **automaticly**, here is the example:
