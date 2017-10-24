@@ -1,6 +1,6 @@
 # instabot.rb
 A instagram bot works without instagram api, only needs your username and password. writted with ruby
-if you like it ... just hit the star button to make me happy! (◕‿◕✿)
+if you like it ... just hit the star button to make me happy! (≖ᴗ≖✿)
 
 ![#](https://img.shields.io/badge/status-under%20construction-ff69b4.svg)
 
