@@ -58,7 +58,7 @@ Config.setup do |set|
 		["is", "looks", "feels", "is really"],
 		["great", "super", "good", "very good", "good","wow", "WOW", "cool", "GREAT","magnificent","magical", "very cool", "stylish", "beautiful","so beautiful", "so stylish","so professional","lovely", "so lovely","very lovely", "glorious","so glorious","very glorious", "adorable", "excellent","amazing"], 
 		[".", "..", "...", "!","!!","!!!"]
-		]
+	]
 end
 
 bot = Instabot.new
