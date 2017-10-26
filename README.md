@@ -64,6 +64,21 @@ end
 bot = Instabot.new
 bot.mode(:auto)
 ```
+# More description
+set | description | value __(example)__
+------------ | -------------
+username | this is your IG username | **replace_your_username**
+password | this is your IG password | **replace_your_password**
+tags | This script use tags for searching medias | write whatever you want like this ["hello_world", "test"] in an **array** form
+wait_per_action | if you want to use automatic mode so then you have to use this, because you will be banned from IG | 1 * 60
+max_like_per_day | this is the max likes per day limitation | 100
+max_follow_per_day | this is the max follows per day limitation | 100
+max_unfollow_per_day | this is the max unfollows per day limitation | 100
+max_comment_per_day | this is the max comments per day limitation | 100
+pretty_prin | pretty and colorful output | true or false
+pre_load | it will load pre configuration in **logs** folder | **followed_users.txt**, **unfollowed_users**, **liked_medias**, **commented_medias**
+comments | the comments you want to post in medias | just change the values in example
+
 
 # What's new in the future ?
 no idea
