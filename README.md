@@ -66,7 +66,7 @@ bot.mode(:auto)
 ```
 # More description
 set | description | value __(example)__
------------- | -------------
+------------ | ------------- | -------------
 username | this is your IG username | **replace_your_username**
 password | this is your IG password | **replace_your_password**
 tags | This script use tags for searching medias | write whatever you want like this ["hello_world", "test"] in an **array** form
