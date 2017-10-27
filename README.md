@@ -76,9 +76,9 @@ max_follow_per_day | this is the max follows per day limitation | 100
 max_unfollow_per_day | this is the max unfollows per day limitation | 100
 max_comment_per_day | this is the max comments per day limitation | 100
 pretty_print | pretty and colorful output | true or false
-pre_load | it will load pre configurations in **logs** folder | **followed_users.txt**, **unfollowed_users**, **liked_medias**, **commented_medias**
+pre_load | it will load pre configurations in **logs** folder | **followed_users.txt**, **unfollowed_users.txt**, **liked_medias.txt**, **commented_medias.txt**
 comments | the comments you want to post in medias | just change the values in example
 
 
 # What's new in the future ?
-no idea
+No idea...
