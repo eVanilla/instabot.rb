@@ -1,8 +1,8 @@
 require_relative './lib/instabot' 
 
 Config.setup do |set|
-	set.username                = 'eyuji_.5'
-	set.password                = 'programmer'
+	set.username                = 'replace_your_username'
+	set.password                = 'replace_your_password'
 	set.tags                    = ["test","hello","birthday"]
 	set.wait_per_action         = 1 * 1
 
