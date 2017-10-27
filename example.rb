@@ -1,10 +1,10 @@
 require_relative './lib/instabot' 
 
 Config.setup do |set|
-	set.username                = 'username'
-	set.password                = 'password'
+	set.username                = 'eyuji_.5'
+	set.password                = 'programmer'
 	set.tags                    = ["test","hello","birthday"]
-	set.wait_per_action         = 1 * 3
+	set.wait_per_action         = 1 * 1
 
 	set.max_like_per_day       	= 6
 	set.max_follow_per_day      = 6
@@ -20,6 +20,7 @@ Config.setup do |set|
 								]
 	set.pretty_print 			= true
 	# set.pre_load 				= false
+	# set.infinity 				= true
 	
 
 	# set.unwanted_list         = ["_id","free_","free"] # => under construction ...
