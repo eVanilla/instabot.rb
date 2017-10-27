@@ -55,7 +55,8 @@ module Modes
 			# end
 		when :default
 			custom_print "[-] ".cyan + "Please choose a mode".red
-			# => ...
+		else
+			custom_print "[-] ".cyan + "Please choose a mode".red
 		end
 	end
 
@@ -142,6 +143,7 @@ module Modes
 				custom_puts "\n[+] ".cyan + "Media liked".green.bold
 				@maximums[:likes_in_day] += 1
 				# custom_print "likes_in_day = #{@maximums[:likes_in_day]} || max_likes_per_day = #{@maximums[:max_likes_per_day]}"
+				id += 1
 				fall_in_asleep
 			rescue Exception => e
 				puts "an error detected ... #{e}\nignored"
@@ -166,6 +168,7 @@ module Modes
 				custom_puts "\n[+] ".cyan + "comment successfully has been sent".green.bold
 				@maximums[:comments_in_day] += 1
 				# custom_print "comments_in_day = #{@maximums[:comments_in_day]} || max_comments_per_day = #{@maximums[:max_comments_per_day]}"
+				id += 1
 				fall_in_asleep
 			rescue Exception => e
 				puts "an error detected ... #{e}\nignored"
