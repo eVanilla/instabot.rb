@@ -29,7 +29,7 @@ end
 
 
 bot = Instabot.new
-bot.mode(:infinite) # => :auto, :cleanup, ...
+bot.mode(:infinite) # => :cleanup, ...
 
 
 
