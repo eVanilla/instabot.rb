@@ -4,7 +4,7 @@ Config.setup do |set|
 	set.username                = 'replace_your_username'
 	set.password                = 'replace_your_password'
 	set.tags                    = ["test","hello","birthday"]
-	set.wait_per_action         = 1 * 1
+	set.wait_per_action         = 1 * 60
 
 	set.max_like_per_day       	= 6
 	set.max_follow_per_day      = 6
