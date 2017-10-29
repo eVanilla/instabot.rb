@@ -15,6 +15,7 @@ install gem in command line via this command:
     $ gem install instabot --no-ri --no-rdoc
 ```
 
+
 ## Usage
 
 here is the **manual** usage and example:
@@ -65,6 +66,7 @@ bot = Instabot.new
 bot.mode(:infinite) # => Available modes: :infinite, :clean_up
 ```
 
+
 ## Configuration description: 
 
 set | description | value __(example)__
@@ -83,21 +85,31 @@ pre_load | it will load pre configurations in **logs** folder | ```followed_user
 comments | the comments you want to post in medias | just change the values in example
 
 
+
 ## Development description
 
 Current available **modes** ```:infinite``` ```:clean_up```
+
 **:infinite** it will make a infinite loop
+
 **:clean_up** it will unfollow all the followed users
 
 ```ruby
-get_user_informations(user_id) # it will return an object => @informations [ :followers, :following, :is_private, :is_verified, :username, :full_name, :full_name, :id]
-get_media_informations(media_id) # it will return an object => @informations [ :text, :requested_by_viewer, :is_verified, :is_private, :full_name, :followed_by_viewer, :has_blocked_viewer, :viewer_has_liked, :comments_disabled, :is_video, :id]
-search(["tags"]) # => Grabbing users and medias by tags (input should be an array)
-check_login_status() # => Checking login status it will return (true or false)  
+get_user_informations(user_id) 
+# it will return an object => @informations [ :followers, :following, :is_private, :is_verified, :username, :full_name, :full_name, :id]
+get_media_informations(media_id) 
+# it will return an object => @informations [ :text, :requested_by_viewer, :is_verified, :is_private, :full_name, :followed_by_viewer, :has_blocked_viewer, :viewer_has_liked, :comments_disabled, :is_video, :id]
+search(["tags"]) 
+# => Grabbing users and medias by tags (input should be an array)
+check_login_status() 
+# => Checking login status it will return (true or false)  
 check_login_status(:auto_retry) # => also it has a auto retry ability
-generate_a_comment() # => return a random string object (comment)
+generate_a_comment() 
+# => return a random string object (comment)
 logout # => logging out from current account
-get_page('page_url') # => exploring the page with current cookies and session
+get_page('page_url') 
+# => exploring the page with current cookies and session
+
 # Any another methods are available on rubydoc
 ```
 
