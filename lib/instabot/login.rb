@@ -8,13 +8,13 @@ module Login
 		page_form.username = options[:username]
 		page_form.password = options[:password]
 		page = page_form.submit
-		if page.code == "200" || page.code == "302"
+		if page.code == "200"
 			@login_status = true
 			log("successfully logged in")
 			custom_print "[+] ".cyan + "Successfully logged in".green.bold
 		else
 			@login_status = false
-			custom_print "[-] ".cyan + "Invalid username or password".red.bold
+			custom_print "[-] ".cyan + "Invalid username or password or maybe a bug!".red.bold
 			exit
 		end
 		puts
@@ -34,12 +34,15 @@ module Login
 		custom_print "[+] ".cyan + "Successfully logged out"
 	end
 
-	def check_login_status
+	def check_login_status(mode=:default)
 		# custom_print "[+] ".cyan + "Checking login status"
 		log("checking loging status")
-		unless @login_status
+		if @login_status
+			return true
+		else
 			custom_print "[-] ".cyan + "you're not logged in.".red.bold
-			login
+			return false
+			login if mode == :auto_retry
 		end
 	end
 

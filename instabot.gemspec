@@ -10,9 +10,9 @@ Gem::Specification.new do |spec|
   spec.email         = [""]
 
   spec.summary       = %q{Ruby instagram bot}
-  spec.description   = %q{A instagram bot works without instagram api, only needs your username and password. written on ruby}
+  spec.description   = %q{A instagram bot works without instagram api, only needs your username and password}
   spec.homepage      = "https://github.com/eVanilla/instabot.rb"
-  spec.license     = 'MIT'
+  spec.license       = 'MIT'
 
   spec.files         = Dir['lib/**/*.rb']
   spec.bindir        = "exe"

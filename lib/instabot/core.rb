@@ -23,13 +23,14 @@ class Instabot
 		@root_dir				= "#{Dir.pwd}"
 		@logs_dir				= "#@root_dir/logs"
 		@global_time 			= Time.new.strftime("%H-%M-%S--%y-%m-%d")
+		@error_404_max_times 	= 3
+		@error_404_times 		= 0
 		@local_stroage 			= {
 			:followed_users 	=> [],
 			:unfollowed_users 	=> [],
 			:liked_medias 		=> [],
 			:commented_medias 	=> []
 		}  
-
 		@maximums = {
 			:follows_in_day	 		=> 0,
 			:unfollows_in_day 		=> 0,

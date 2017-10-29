@@ -1,10 +1,10 @@
 require 'instabot' 
 
 Config.setup do |set|
-	set.username                = 'pjfawjipfawofi'
-	set.password                = 'programmer'
+	set.username                = 'replace_your_username'
+	set.password                = 'replace_your_password'
 	set.tags                    = ["test","hello","birthday"]
-	set.wait_per_action         = 1 * 1
+	set.wait_per_action         = 1 * 60
 
 	set.max_like_per_day       	= 6
 	set.max_follow_per_day      = 6
@@ -19,9 +19,9 @@ Config.setup do |set|
 									[".", "..", "...", "!","!!","!!!"]
 								]
 	set.pretty_print 			= true
-	# set.pre_load 				= false
+	set.pre_load 				= false
 	set.infinite_tags 			= true
-	
+
 
 	# set.unwanted_list         = ["_id","free_","free"] # => under construction ...
 	# set.white_list_users      = ["john","alex","nick"] # => under construction ...

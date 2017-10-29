@@ -1,5 +1,5 @@
 module Config
-	
+
 	class << self
 		attr_accessor :options
 	end
@@ -14,12 +14,14 @@ module Config
 		def initialize
 			@username				= nil
 			@password 				= nil
-			@tags					= ["test","hello","hello_world","birthday","food"]
-			@max_like_per_day 		= 10
-			@max_follow_per_day 	= 10
-			@max_unfollow_per_day	= 10
-			@max_comment_per_day	= 10
+			@white_list_users 		= nil
 			@unwanted_list 			= nil
+			@wait_per_action		= 1 * 60
+			@tags					= ["test","hello","hello_world","birthday","food"]
+			@max_like_per_day 		= 50
+			@max_follow_per_day 	= 50
+			@max_unfollow_per_day	= 50
+			@max_comment_per_day	= 50
 			@comments 				= [	
 										["this", "the", "your"],
 										["photo", "picture", "pic", "shot", "snapshot"],
@@ -27,11 +29,9 @@ module Config
 										["great", "super", "good", "very good", "good","wow", "WOW", "cool", "GREAT","magnificent","magical", "very cool", "stylish", "beautiful","so beautiful", "so stylish","so professional","lovely", "so lovely","very lovely", "glorious","so glorious","very glorious", "adorable", "excellent","amazing"], 
 										[".", "..", "...", "!","!!","!!!"]
 									]	
-			@wait_per_action		= 1 * 60
-			@white_list_users 		= nil
-			@infinite_tags 			= false
+			@infinite_tags 			= true
+			@pre_load 				= true
 			@pretty_print 			= true
-			@pre_load 				= false
 		end	
 	end
 

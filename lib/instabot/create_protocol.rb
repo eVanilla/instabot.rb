@@ -12,7 +12,7 @@ module Protocol
 
 
 	def get_page(url)
-		@page = @agent.get(url)
+		response = @agent.get(url)
 		# @temp_jar = @agent.cookie_jar
 		# @temp_jar.save("#{@lib_dir}/cookies.yaml", session: true)	# => saving the cookies
 	end

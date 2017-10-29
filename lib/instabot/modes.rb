@@ -47,15 +47,11 @@ module Modes
 					sleep 1
 				end
 			end
-		when :cleanup
+		when :clean_up
 			custom_puts "[+] ".cyan + "Clean up mode is turned on"
 			@local_stroage[:followed_users].each do |user|
 				unfollow(user)
 			end
-			# users.each do |user|
-			# 	get_user_informations(user)
-			# 	unfollow(@informations[:id])
-			# end
 		when :default
 			custom_print "[-] ".cyan + "Please choose a mode".red
 		else
@@ -104,7 +100,7 @@ module Modes
 		# users.each do |user|
 		followed_users = @local_stroage[:followed_users]
 		custom_puts "[+] ".cyan + "#{followed_users.size} users ready to unfollow"
-		id 			= 0
+		id = 0
 		while @maximums[:unfollows_in_day] < @maximums[:max_unfollows_per_day]
 			if @local_stroage[:followed_users].size < @maximums[:max_unfollows_per_day]
 			begin 
@@ -114,7 +110,7 @@ module Modes
 				# custom_print "unfollowed_users[id] => #{unfollowed_users[id]}"
 				custom_puts "[+] ".cyan + "Trying to unfollow a user [#{followed_users[id]}]"	
 				unfollow(followed_users[id])
-				custom_puts "\n[+] ".cyan + "User unfollowed!".bold.green
+				custom_puts "\n[+] ".cyan + "User unfollowed".bold.green
 				@maximums[:unfollows_in_day] += 1
 				id += 1
 				# custom_print "unfollows_in_day = #{@maximums[:unfollows_in_day]} || max_unfollows_per_day = #{@maximums[:max_unfollows_per_day]} || id = #{id}"
@@ -125,8 +121,8 @@ module Modes
 				retry
 			end
 			else
-				custom_print "[+] ".cyan + "[unfollow users per day] is bigger than followed users"
-				break
+				custom_print "[+] ".cyan + "[unfollow per day] is bigger than [follow per day]"
+				exit
 			end
 		end
 	end
@@ -134,7 +130,7 @@ module Modes
 	def auto_like
 		# medias.each do |media|
 		all_medias 	= medias
-		custom_puts "[+] ".cyan + "#{all_medias.size} medias ready to like"
+		custom_puts "[+] ".cyan + "#{all_medias.size} Medias ready to like"
 		id 			= 0
 		while @maximums[:likes_in_day] < @maximums[:max_likes_per_day]
 			begin 
@@ -159,11 +155,12 @@ module Modes
 	def auto_comment
 		# medias.each do |media|
 		all_medias 	= medias
-		custom_puts "[+] ".cyan + "#{all_medias.size} medias ready to send a comment"
+		custom_puts "[+] ".cyan + "#{all_medias.size} Medias ready to send a comment"
 		id 			= 0
 		while @maximums[:comments_in_day] < @maximums[:max_comments_per_day]
 			begin 
 				get_media_informations(all_medias[id])
+				id += 1 if @informations[:comments_disabled]
 				# custom_print "media informations:".cyan
 				# @informations.map {|key,val| custom_print "#{key}: #{val}"}
 				custom_puts "[+] ".cyan + "Trying to send a comment to media[#{all_medias[id]}]"	
