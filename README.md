@@ -10,13 +10,6 @@ install gem in command line via this command:
 ```
     $ gem install instabot --no-ri --no-rdoc
 ```
-
-## Used gems
-* mechanize
-* colorize
-* hashie
-* activesupport
-
 # Usage
 here is the **manual** usage or example:
 
@@ -81,11 +74,16 @@ pretty_print | pretty and colorful output | true or false
 pre_load | it will load pre configurations in **logs** folder | **followed_users.txt**, **unfollowed_users.txt**, **liked_medias.txt**, **commented_medias.txt**
 comments | the comments you want to post in medias | just change the values in example
 
+# What's new in the future ?
+No idea...
 
-# Contributing
+## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/eVanilla/instabot.rb
 
+## Used gems
+* mechanize
+* colorize
+* hashie
+* activesupport
 
-# What's new in the future ?
-No idea...
