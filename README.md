@@ -45,8 +45,8 @@ here is the **automatic** usage and example:
 require 'instabot' 
 
 Config.setup do |set|
-    set.username                = 'username'
-    set.password                = 'password'
+    set.username                = 'replace_your_username'
+    set.password                = 'replace_your_password'
     set.tags                    = ["test","hello","birthday"]
     set.wait_per_action         = 1 * 3
     set.max_like_per_day        = 50
