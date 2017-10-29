@@ -60,7 +60,7 @@ bot = Instabot.new
 bot.mode(:infinite)
 ```
 
-# More description
+## More description
 set | description | value __(example)__
 ------------ | ------------- | -------------
 username | this is your IG username | **replace_your_username**
@@ -76,7 +76,7 @@ pretty_print | pretty and colorful output | true or false
 pre_load | it will load pre configurations in **logs** folder | **followed_users.txt**, **unfollowed_users.txt**, **liked_medias.txt**, **commented_medias.txt**
 comments | the comments you want to post in medias | just change the values in example
 
-# What's new in the future ?
+## What's new in the future ?
 No idea...
 
 ## Contributing
