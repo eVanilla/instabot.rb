@@ -6,6 +6,7 @@ A instagram bot works without instagram api, only needs your username and passwo
 if you like it just... hit the star button to make me happy! (≖ᴗ≖✿)
  
 ![#](https://img.shields.io/badge/status-complete-ff69b4.svg?style=for-the-badge)
+![https://rubygems.org/gems/instabot](https://img.shields.io/badge/gem%20version-0.1.2-brightgreen.svg?style=for-the-badge)
 
 ## installation
 
