@@ -1,11 +1,5 @@
 module Grabber
 
-
-	
-
-
-
-
 	def get_user_informations(user_id)
 		# puts "=".cyan*10
 		user_page 	= "https://www.instagram.com/web/friendships/#{user_id}/follow/"
@@ -37,6 +31,7 @@ module Grabber
 		media_info 	= @agent.get("https://www.instagram.com/p/#{media_id}/?__a=1")
 		data 		= JSON.parse(media_info.body)
 		data.extend Hashie::Extensions::DeepFind
+		# pp data.extend Hashie::Extensions::DeepFind
 
 		# puts data.deep_find('id')
 		# puts data.deep_find('is_video')
@@ -59,8 +54,24 @@ module Grabber
 			full_name: data.deep_find("full_name"),
 			is_private: data.deep_find("is_private"),
 			is_verified: data.deep_find("is_verified"),
-			requested_by_viewer: data.deep_find("requested_by_viewer")
+			requested_by_viewer: data.deep_find("requested_by_viewer"),
+			text: data.deep_find("text")
 		}
+		unless @infinite_tags == true
+			# puts "in infinity".upcase.cyan.bold
+			tags = @informations[:text].encode('UTF-8', {:invalid => :replace, :undef => :replace, :replace => '?'}).split(/\W+/)
+			id = 0
+			tags.each do |tag| 
+				if tag == "_" || tag == "" || tag.nil? 
+					tags.delete(tag) 
+				else
+					id += 1
+					Config.options.tags << tag 
+				end
+			end
+			custom_puts "\n[+] ".cyan + "[" + "#{id}".yellow + "] New tags added"
+			# pp Config.options.tags
+		end
 		# puts @informations
 
 
@@ -80,6 +91,7 @@ module Grabber
 			media_codes = data.deep_find_all("code")
 			owners.map { |id| users << id['id']}	
 			media_codes.map {|code| medias << code}
+			Config.options.tags.delete(tag)
 		end
 		custom_puts "\n[+] ".cyan + "Total grabbed users [" + "#{users.size}".yellow + "]"
 		custom_puts "[+] ".cyan + "Total grabbed medias [" + "#{medias.size}".yellow + "]\n"

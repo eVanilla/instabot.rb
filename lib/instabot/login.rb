@@ -8,19 +8,26 @@ module Login
 		page_form.username = options[:username]
 		page_form.password = options[:password]
 		page = page_form.submit
-		@login_status = true
-		log("successfully logged in")
-		custom_print "[+] ".cyan + "Successfully logged in".green.bold
+		if page.code == "200" || page.code == "302"
+			@login_status = true
+			log("successfully logged in")
+			custom_print "[+] ".cyan + "Successfully logged in".green.bold
+		else
+			@login_status = false
+			custom_print "[-] ".cyan + "Invalid username or password".red.bold
+			exit
+		end
 		puts
 	rescue Exception => e
 		log("a error detected: #{e.class} #{e}")
 		@login_status = false
-		custom_print "[-] ".cyan + "#{e.class} #{e.message}\n#{e}".red
+		custom_print "[-] ".cyan + "#{e.class} #{e.message}\n#{e.backtrace.inspect}".red
 	end
 
 	def logout
 		log("trying to logout")
 		custom_print "[+] ".cyan + "Trying to logging out"
+		set_mechanic_data
 		logout_page = @agent.get("https://www.instagram.com/accounts/logout/")
 		@logout_status = true
 		log("successfully logged out")
@@ -28,13 +35,11 @@ module Login
 	end
 
 	def check_login_status
-		custom_print "[+] ".cyan + "Checking login status"
+		# custom_print "[+] ".cyan + "Checking login status"
 		log("checking loging status")
 		unless @login_status
-			
 			custom_print "[-] ".cyan + "you're not logged in.".red.bold
 			login
-
 		end
 	end
 

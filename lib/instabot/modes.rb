@@ -2,7 +2,7 @@ module Modes
 
 	def mode(mode=:default)
 		case mode
-		when :auto
+		when :infinite
 			custom_print "[+] ".cyan + "Auto mode is turned on".yellow
 			search(options[:tags])
 			@next_day = Time.new + 1.days
@@ -48,7 +48,10 @@ module Modes
 				end
 			end
 		when :cleanup
-			custom_puts "[+] ".cyan + "Clean up is turned on"
+			custom_puts "[+] ".cyan + "Clean up mode is turned on"
+			@local_stroage[:followed_users].each do |user|
+				unfollow(user)
+			end
 			# users.each do |user|
 			# 	get_user_informations(user)
 			# 	unfollow(@informations[:id])
@@ -89,7 +92,7 @@ module Modes
 				# custom_print "follows_in_day = #{@maximums[:follows_in_day]} || max_follows_per_day = #{@maximums[:max_follows_per_day]} || id = #{id}"
 				fall_in_asleep
 			rescue Exception => e
-				puts "an error detected ... #{e}\nignored"
+				puts "an error detected ... #{e} #{e.backtrace}\nignored"
 				id += 1
 				retry
 			end
@@ -146,7 +149,7 @@ module Modes
 				id += 1
 				fall_in_asleep
 			rescue Exception => e
-				puts "an error detected ... #{e}\nignored"
+				puts "an error detected ... #{e}\n#{e.backtrace.inspect}\nignored"
 				id += 1
 				retry
 			end
@@ -171,7 +174,7 @@ module Modes
 				id += 1
 				fall_in_asleep
 			rescue Exception => e
-				puts "an error detected ... #{e}\nignored"
+				puts "an error detected ... #{e}\n#{e.backtrace.inspect}\nignored"
 				id += 1
 				retry
 			end
@@ -193,21 +196,26 @@ module Modes
 		time = ((@next_day) - Time.new).to_i # => seconds elapsed ...
 		# custom_print "next day = #{@next_day}"
 		if time == 0
+
 			custom_print "[+] ".cyan + "It's a new day"
 			@local_stroage[:followed_users] 	= []
 			@local_stroage[:unfollowed_users] 	= []
 			@local_stroage[:liked_medias] 		= []
 			@local_stroage[:commented_medias] 	= []
-			@maximums[:follows_in_day] 		= 0 
-			@maximums[:unfollows_in_day] 	= 0
-			@maximums[:likes_in_day] 		= 0
-			@maximums[:comments_in_day] 	= 0
+			@maximums[:follows_in_day] 			= 0 
+			@maximums[:unfollows_in_day] 		= 0
+			@maximums[:likes_in_day] 			= 0
+			@maximums[:comments_in_day] 		= 0
 			# time = (((Time.new + 1.days).to_f - Time.new.to_f) * 24 * 60 * 60).to_i
 			@next_day = Time.new + 1.days
 			# custom_print "new next day = #{@next_day}"
 			# custom_print "new maximums = #{@maximums}"
 			# custom_print "new local stroage = #{@local_stroage}"
 			# custom_print "="*10
+			unless @infinite_tags == true
+				search(options[:tags])
+			end
+
 		else
 			custom_print "[+] ".cyan + "#{time} seconds remained"
 		end 

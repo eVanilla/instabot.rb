@@ -7,7 +7,7 @@ module Log
 		end
 		
 		if File.exists?("#{@logs_dir}/logs.log")
-			File.delete("#{@logs_dir}/logs.log")
+			# File.delete("#{@logs_dir}/logs.log")
 		end
 	end
 
@@ -17,7 +17,7 @@ module Log
 
 	def log(text="",from="")
 		time = Time.new.strftime("%H:%M:%S %y-%m-%d")
-		File.open("#{@logs_dir}/logs.log","a+") do |log_file|
+		File.open("#{@logs_dir}/logs-#{@global_time}.log","a+") do |log_file|
 			log_file.puts "[#{@log_counter}] [#{time}] [#{from}] -- : #{text}"
 		end
 		@log_counter += 1

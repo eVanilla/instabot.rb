@@ -1,8 +1,8 @@
-require_relative './lib/instabot' 
+require 'instabot' 
 
 Config.setup do |set|
-	set.username                = 'replace_your_username'
-	set.password                = 'replace_your_password'
+	set.username                = 'pjfawjipfawofi'
+	set.password                = 'programmer'
 	set.tags                    = ["test","hello","birthday"]
 	set.wait_per_action         = 1 * 1
 
@@ -20,7 +20,7 @@ Config.setup do |set|
 								]
 	set.pretty_print 			= true
 	# set.pre_load 				= false
-	# set.infinity 				= true
+	set.infinite_tags 			= true
 	
 
 	# set.unwanted_list         = ["_id","free_","free"] # => under construction ...
@@ -29,7 +29,7 @@ end
 
 
 bot = Instabot.new
-bot.mode(:auto) # => :auto, :cleanup, ...
+bot.mode(:infinite) # => :auto, :cleanup, ...
 
 
 
