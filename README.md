@@ -4,16 +4,20 @@ if you like it ... just hit the star button to make me happy! (≖ᴗ≖✿)
  
 ![#](https://img.shields.io/badge/status-complete-ff69b4.svg?style=for-the-badge)
 
-# installation
-
+# Installation
 install gem in command line via this command:  
 
 ```
     $ gem install instabot --no-ri --no-rdoc
 ```
 
-# Usage
+## Used gems
+* mechanize
+* colorize
+* hashie
+* activesupport
 
+# Usage
 here is the **manual** usage or example:
 
 ```ruby
