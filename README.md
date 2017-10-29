@@ -46,6 +46,7 @@ Config.setup do |set|
     set.max_comment_per_day     = 6
     set.pretty_print 	        = true
     set.pre_load                = false
+    set.infinite_tags 			= true
     set.comments                = [	
 		["this", "the", "your"],
 		["photo", "picture", "pic", "shot", "snapshot"],
