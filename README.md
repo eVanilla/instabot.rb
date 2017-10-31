@@ -12,7 +12,7 @@ if you like it just... hit the star button to make me happy! (≖ᴗ≖✿)
 ## installation
 
 Add this to your __Gemfile__:
-```
+```ruby
 gem 'instabot'
 ```
 and run the ```bundle install``` command.
@@ -49,7 +49,7 @@ Config.setup do |set|
     set.username                = 'replace_your_username'
     set.password                = 'replace_your_password'
     set.tags                    = ["test","hello","birthday"]
-    set.wait_per_action         = 1 * 60 # => second
+    set.wait_per_action         = 1 * 60 # => seconds
     set.max_like_per_day        = 50
     set.max_follow_per_day      = 50
     set.max_unfollow_per_day    = 50
