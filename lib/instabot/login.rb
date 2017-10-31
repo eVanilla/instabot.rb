@@ -1,12 +1,19 @@
 module Login
 
-	def login
+	def login(username="", password="")
+		if @login_mode == :manual
+			username = username.to_s
+			password = password.to_s
+		else
+			username = options[:username]
+			password = options[:password]
+		end
 		log("trying to login")
-		custom_print "[+] ".cyan + "Trying to login into [#{options[:username]}] account"
+		custom_print "[+] ".cyan + "Trying to login into [#{username}] account"
 		login_page = @agent.get("https://www.instagram.com/accounts/login/?force_classic_login")
 		page_form = login_page.forms.last
-		page_form.username = options[:username]
-		page_form.password = options[:password]
+		page_form.username = username
+		page_form.password = password
 		page = page_form.submit
 		if page.code == "200"
 			@login_status = true
@@ -21,7 +28,7 @@ module Login
 	rescue Exception => e
 		log("a error detected: #{e.class} #{e}")
 		@login_status = false
-		custom_print "[-] ".cyan + "#{e.class} #{e.message}\n#{e.backtrace.inspect}".red
+		custom_print "[-] ".cyan + "#{e.class} #{e.message}".red
 	end
 
 	def logout

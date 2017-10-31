@@ -35,6 +35,8 @@ module Log
 			write_file("commented_medias.txt",id)
 		when :default
 			puts "please choice a type"
+		else
+			puts "please choice a type"
 		end
 	end
 

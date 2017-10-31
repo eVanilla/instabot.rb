@@ -1,7 +1,8 @@
 module Banner
 
   def print_banner()
-    puts <<-BANNER
+  	if options[:print_banner]
+    	puts <<-BANNER
  ██╗███╗   ██╗███████╗████████╗ █████╗ ██████╗  ██████╗ ████████╗
  ██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██╔═══██╗╚══██╔══╝
  ██║██╔██╗ ██║███████╗   ██║   ███████║██████╔╝██║   ██║   ██║   
@@ -9,8 +10,9 @@ module Banner
  ██║██║ ╚████║███████║   ██║   ██║  ██║██████╔╝╚██████╔╝   ██║   
  ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═════╝  ╚═════╝    ╚═╝   
 
-    BANNER
-    puts "A instagram bot works without IG api".white.bold + " #Author ".yellow + "github.com/eVanilla".cyan
+    	BANNER
+    	puts "A instagram bot works without IG api".white.bold + " #Author ".yellow + "github.com/eVanilla".cyan
+  	end
   end
 
 end
