@@ -3,11 +3,11 @@
 # instabot.rb
 
 A instagram bot works without instagram api, only needs your username and password. writted with ruby.
-![#](https://img.shields.io/gem/dt/instabot.svg?label=TOTAL%20DOWNLOADS&style=flat-square)
-![#](https://img.shields.io/gem/v/instabot.svg?label=GEM%20VERSION&style=flat-square)
 
 if you like it just... hit the star button to make me happy! (≖ᴗ≖✿)
  
+![#](https://img.shields.io/gem/dt/instabot.svg?label=TOTAL%20DOWNLOADS&style=flat-square)
+![#](https://img.shields.io/gem/v/instabot.svg?label=GEM%20VERSION&style=flat-square)
 
 ## installation
 
