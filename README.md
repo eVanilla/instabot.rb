@@ -103,8 +103,8 @@ Current available **modes** ```:infinite``` ```:clean_up```
 
 method | description | example
 ------------ | ------------- | -------------
-```clients``` | all the grabbed users | ```bot.users.each{|user|...```
-```medias``` | all the grabbed medias | ```bot.medias.each{|media|...```
+```clients``` | all the grabbed users | ```bot.users```
+```medias``` | all the grabbed medias | ```bot.medias```
 ```log()``` | no comment! | ```log("log text here ...")```
 ```get_user_informations()``` | return an object ```# => @informations [ :followers, :following, :is_private, :is_verified, :username, :full_name, :full_name, :id]``` | ```get_user_informations(user_id)```
 ```get_media_informations()``` | return an object ```# => @informations [ :text, :requested_by_viewer, :is_verified, :is_private, :full_name, :followed_by_viewer, :has_blocked_viewer, :viewer_has_liked, :comments_disabled, :is_video, :id]``` | ```get_media_informations(media_id)```
