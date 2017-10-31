@@ -3,11 +3,11 @@
 # instabot.rb
 
 A instagram bot works without instagram api, only needs your username and password. writted with ruby.
+![#](https://img.shields.io/gem/dt/instabot.svg?label=TOTAL%20DOWNLOADS&style=flat-square)
+![#](https://img.shields.io/gem/v/instabot.svg?label=GEM%20VERSION&style=flat-square)
 
 if you like it just... hit the star button to make me happy! (≖ᴗ≖✿)
  
-![#](https://img.shields.io/gem/dt/instabot.svg?label=TOTAL%20DOWNLOADS&style=flat-square)
-![#](https://img.shields.io/gem/v/instabot.svg?label=GEM%20VERSION&style=flat-square)
 
 ## installation
 
@@ -87,7 +87,7 @@ max_comment_per_day | this is the max comments per day limitation | ```100```
 infinite_tags | grab new tags by medias __(infinite tag grabber)__ | ```ture``` or ```false```
 pretty_print | pretty and colorful output | ```true``` or ```false```
 print_banner | enable or disable banner | ```true``` or ```false```
-pre_load | it will load pre configurations in **logs** folder | ```followed_users.txt```, ```unfollowed_users.txt```, ```liked_medias.txt```, ```commented_medias.txt```
+pre_load | load pre configurations in **logs** folder | ```followed_users.txt```, ```unfollowed_users.txt```, ```liked_medias.txt```, ```commented_medias.txt```
 comments | the comments you want to post in medias | just change the values in example
 
 
@@ -103,13 +103,13 @@ Current available **modes** ```:infinite``` ```:clean_up```
 
 method | description | example
 ------------ | ------------- | -------------
-```clients``` | all the grabbed users | ```bot.users.each {|user| ...}```
-```medias``` | all the grabbed medias | ```bot.medias.each {|media| ...}```
+```clients``` | all the grabbed users | ```bot.users.each{|user|...```
+```medias``` | all the grabbed medias | ```bot.medias.each{|media|...```
 ```log()``` | no comment! | ```log("log text here ...")```
-```get_user_informations()``` | it will return an object ```# => @informations [ :followers, :following, :is_private, :is_verified, :username, :full_name, :full_name, :id]``` | ```get_user_informations(user_id)```
-```get_media_informations()``` | it will return an object ```# => @informations [ :text, :requested_by_viewer, :is_verified, :is_private, :full_name, :followed_by_viewer, :has_blocked_viewer, :viewer_has_liked, :comments_disabled, :is_video, :id]``` | ```get_media_informations(media_id)```
+```get_user_informations()``` | return an object ```# => @informations [ :followers, :following, :is_private, :is_verified, :username, :full_name, :full_name, :id]``` | ```get_user_informations(user_id)```
+```get_media_informations()``` | return an object ```# => @informations [ :text, :requested_by_viewer, :is_verified, :is_private, :full_name, :followed_by_viewer, :has_blocked_viewer, :viewer_has_liked, :comments_disabled, :is_video, :id]``` | ```get_media_informations(media_id)```
 ```search()``` | Grabbing users and medias by tags (input should be an array) | ```search(["tags"])``` array form 
-```check_login_status()``` | Checking login status it will return (```true``` or ```false```) | ```check_login_status()``` also it has a auto retry ability```check_login_status(:auto_retry)``` 
+```check_login_status()``` | Checking login status it will return (```true``` or ```false```) | ```check_login_status()``` also it has a auto retry ability ```check_login_status(:auto_retry)``` 
 ```generate_a_comment()``` | return a random string object __(comment)__ | ```generate_a_comment()```
 ```logout()``` | logging out from current account | ```logout()```
 ```get_page()``` | exploring the page with current cookies and session | ```get_page('page_url')```  
