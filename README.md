@@ -2,7 +2,7 @@
 
 # instabot.rb
 
-A instagram bot works without instagram api, only needs your username and password. writted with ruby.
+An instagram bot works without instagram api, only needs your username and password. writted with ruby.
 
 if you like it just... hit the star button to make me happy! (≖ᴗ≖✿)
  
@@ -113,7 +113,7 @@ method | description | example
 ```generate_a_comment()``` | return a random string object __(comment)__ | ```generate_a_comment()```
 ```logout()``` | logging out from current account | ```logout()```
 ```get_page()``` | exploring the page with current cookies and session | ```get_page('page_url')```  
-> Any another methods are available on rubydoc
+> all another methods are available on rubydoc
 
 
 
@@ -128,7 +128,6 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/eVanil
 * Mechanize
 * hashie
 
-
 ## What's new in the future ?
 
-No idea...
+* rewriting the code and enabling the proxy usage 
