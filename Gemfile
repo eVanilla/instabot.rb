@@ -1,7 +1,7 @@
-source "https://rubygems.org"
-gem 'colorize'
-gem 'mechanize'
-gem 'hashie'
+source 'https://rubygems.org'
 gem 'activesupport'
+gem 'colorize'
 gem 'faker'
+gem 'hashie'
 gem 'instabot'
+gem 'mechanize'

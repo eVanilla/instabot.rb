@@ -1,0 +1,284 @@
+Rails:
+  Enabled: false
+
+AbcSize:
+  Enabled: false
+
+AccessorMethodName:
+  Enabled: true
+
+ActionFilter:
+  Enabled: true
+
+Alias:
+  Enabled: true
+
+AlignHash:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+ArrayJoin:
+  Enabled: true
+
+AsciiComments:
+  Enabled: false
+
+AsciiIdentifiers:
+  Enabled: true
+
+Attr:
+  Enabled: true
+
+BlockNesting:
+  Enabled: false
+
+CaseEquality:
+  Enabled: false
+
+CharacterLiteral:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: true
+
+ClassLength:
+  Enabled: false
+
+ClassVars:
+  Enabled: true
+
+CollectionMethods:
+  PreferredMethods:
+    collect: map
+    collect!: map!
+    detect: find
+    reduce: inject
+    find_all: select
+
+ColonMethodCall:
+  Enabled: true
+
+CommentAnnotation:
+  Enabled: false
+
+CyclomaticComplexity:
+  Enabled: false
+
+Delegate:
+  Enabled: false
+
+PreferredHashMethods:
+  Enabled: true
+
+Documentation:
+  Enabled: false
+
+DotPosition:
+  EnforcedStyle: trailing
+
+DoubleNegation:
+  Enabled: false
+
+EachWithObject:
+  Enabled: true
+
+# TODO When Rubocop adds support for this, use it (probably in 0.26.2)
+# EmptyLinesAroundClassBody:
+#   Enabled: false
+
+# TODO remove when EmptyLinesAroundClassBody is enabled
+EmptyLinesAroundBody:
+  Enabled: false
+
+EmptyLiteral:
+  Enabled: false
+
+Encoding:
+  Enabled: false
+
+EvenOdd:
+  Enabled: true
+
+FileName:
+  Enabled: false
+
+FlipFlop:
+  Enabled: false
+
+FormatString:
+  Enabled: true
+  EnforcedStyle: percent
+
+FrozenStringLiteralComment:
+  Enabled: false
+
+GlobalVars:
+  Enabled: true
+
+GuardClause:
+  Enabled: false
+
+IfUnlessModifier:
+  Enabled: false
+
+IfWithSemicolon:
+  Enabled: true
+
+InlineComment:
+  Enabled: false
+
+Lambda:
+  Enabled: true
+
+LambdaCall:
+  Enabled: true
+
+LineEndConcatenation:
+  Enabled: true
+
+LineLength:
+  Max: 80
+
+MethodCalledOnDoEndBlock:
+  Enabled: true
+
+MethodLength:
+  Enabled: false
+
+ModuleFunction:
+  Enabled: true
+
+NegatedIf:
+  Enabled: true
+
+NegatedWhile:
+  Enabled: true
+
+Next:
+  Enabled: true
+
+NilComparison:
+  Enabled: true
+
+Not:
+  Enabled: true
+
+NumericLiterals:
+  Enabled: true
+
+OneLineConditional:
+  Enabled: true
+
+ParameterLists:
+  Enabled: false
+
+PercentLiteralDelimiters:
+  Enabled: false
+
+PerlBackrefs:
+  Enabled: false
+
+PredicateName:
+  NamePrefixBlacklist:
+    - is_
+
+Proc:
+  Enabled: true
+
+RaiseArgs:
+  Enabled: true
+
+RegexpLiteral:
+  Enabled: true
+
+SelfAssignment:
+  Enabled: true
+
+SingleLineBlockParams:
+  Enabled: false
+
+SingleLineMethods:
+  Enabled: false
+
+SignalException:
+  Enabled: false
+
+SpecialGlobalVars:
+  Enabled: true
+
+StringLiterals:
+  EnforcedStyle: single_quotes
+
+VariableInterpolation:
+  Enabled: false
+
+TrailingCommaInLiteral:
+  Enabled: true
+
+TrivialAccessors:
+  Enabled: true
+
+WhenThen:
+  Enabled: true
+
+WhileUntilModifier:
+  Enabled: false
+
+WordArray:
+  Enabled: true
+
+# Lint
+
+AmbiguousOperator:
+  Enabled: false
+
+AmbiguousBlockAssociation:
+  Enabled: false
+
+AmbiguousRegexpLiteral:
+  Enabled: false
+
+AssignmentInCondition:
+  Enabled: false
+
+ConditionPosition:
+  Enabled: false
+
+DeprecatedClassMethods:
+  Enabled: false
+
+ElseLayout:
+  Enabled: false
+
+HandleExceptions:
+  Enabled: false
+
+LiteralInCondition:
+  Enabled: false
+
+LiteralInInterpolation:
+  Enabled: false
+
+Loop:
+  Enabled: false
+
+ParenthesesAsGroupedExpression:
+  Enabled: false
+
+RequireParentheses:
+  Enabled: false
+
+UnderscorePrefixedVariableName:
+  Enabled: false
+
+Void:
+  Enabled: false
+
+HttpPositionalArguments:
+  Enabled: false
+
+BinaryOperatorParameter:
+  Enabled: true
+
+ExtraSpacing:
+  ForceEqualSignAlignment: true
