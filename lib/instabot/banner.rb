@@ -11,7 +11,7 @@ module Banner
  ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═════╝  ╚═════╝    ╚═╝   
 
     	BANNER
-    	puts "A instagram bot works without IG api".white.bold + " #Author ".yellow + "github.com/eVanilla".cyan
+    	puts "An instagram bot works without instagram api ".white.bold + "github.com/".cyan + "eVanilla".cyan.bold.italic
   	end
   end
 

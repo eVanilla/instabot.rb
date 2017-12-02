@@ -8,48 +8,71 @@ module Login
 			username = options[:username]
 			password = options[:password]
 		end
-		log("trying to login")
-		custom_print "[+] ".cyan + "Trying to login into [#{username}] account"
+		log("Trying to login into [#{username}] account", "LOGIN")
+		puts "[+] ".cyan + "Trying to login into [#{username}] account"
 		login_page = @agent.get("https://www.instagram.com/accounts/login/?force_classic_login")
 		page_form = login_page.forms.last
 		page_form.username = username
 		page_form.password = password
 		page = page_form.submit
-		if page.code == "200"
+		# pp page
+		# puts "=".cyan*100
+		# pp page.body
+		# puts "=".cyan*100
+		# pp page.code
+		# puts "=".cyan*100
+		
+		# puts "=".cyan*100
+		# pp @agent.history.last.uri
+		if page.code == "200" && page.uri.to_s != "https://www.instagram.com/accounts/login/?force_classic_login" && !"#{page.uri.to_s}".include?("challenge")
 			@login_status = true
-			log("successfully logged in")
-			custom_print "[+] ".cyan + "Successfully logged in".green.bold
+			log("successfully logged in","LOGIN")
+			puts "[+] ".cyan + "Successfully logged in".green.bold
 		else
 			@login_status = false
-			custom_print "[-] ".cyan + "Invalid username or password or maybe a bug!".red.bold
-			exit
+			if "#{page.uri.to_s}".include?("challenge")
+				puts "[-] ".cyan + "Your account needs veryfication or it has banned from instagram".red.bold
+			else
+				puts "[-] ".cyan + "Invalid username or password".red.bold
+			end
+			check_login_status()
 		end
-		puts
 	rescue Exception => e
-		log("a error detected: #{e.class} #{e}")
+		log("an error detected: #{e.class} #{e} #{e.backtrace}","LOGIN")
 		@login_status = false
-		custom_print "[-] ".cyan + "#{e.class} #{e.message}".red
+		puts "[-] ".cyan + "#{e.class} #{e.message}".red
+		exit
 	end
 
 	def logout
-		log("trying to logout")
-		custom_print "[+] ".cyan + "Trying to logging out"
+		log("trying to logout", "LOGIN")
+		puts "[+] ".cyan + "Trying to logging out"
 		set_mechanic_data
 		logout_page = @agent.get("https://www.instagram.com/accounts/logout/")
 		@logout_status = true
-		log("successfully logged out")
-		custom_print "[+] ".cyan + "Successfully logged out"
+		log("successfully logged out", "LOGIN")
+		puts "[+] ".cyan + "Successfully logged out"
 	end
 
 	def check_login_status(mode=:default)
-		# custom_print "[+] ".cyan + "Checking login status"
-		log("checking loging status")
+		puts "[+] ".cyan + "Checking login status" if @login_mode != :manual
+		log("checking loging status", "LOGIN")
 		if @login_status
 			return true
 		else
-			custom_print "[-] ".cyan + "you're not logged in.".red.bold
-			return false
-			login if mode == :auto_retry
+			puts "[-] [##{@login_counter}] ".cyan + "You're not logged in (or it is an error with the request)\t[TRYING AGAIN]".red.bold
+			# if @login_mode != :manual
+				# if mode == :auto_retry
+					exit! if @login_counter == 3
+					@login_counter += 1
+					login 
+				# else
+					# exit!
+				# end
+			# else
+
+				# return false
+			# end
 		end
 	end
 

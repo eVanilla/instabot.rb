@@ -3,40 +3,45 @@ module Modes
 	def mode(mode=:default)
 		case mode
 		when :infinite
-			custom_print "[+] ".cyan + "Auto mode is turned on".yellow
+			puts "[+] ".cyan + "[Auto] mode is turned on".yellow
+			log("[Auto] mode is turned on", "MODES")
 			search(options[:tags])
-			@next_day = Time.new + 1.days
-			puts
+			@tomorrow = Time.new + 1.days
+			@today = Time.new
 			while true
 				# if @maximums[:likes_in_day] != @maximums[:max_likes_per_day] && @maximums[:follows_in_day] != @maximums[:max_follows_per_day] && @maximums[:unfollows_in_day] != @maximums[:max_unfollows_per_day] &&  @maximums[:comments_in_day] != @maximums[:max_comments_per_day]	
 				if !maximums_are_full?
-					# custom_puts "[+] " + "".red
+					# puts "[+] " + "".red
 					if @maximums[:follows_in_day] != @maximums[:max_follows_per_day]
 						@maximums[:follows_in_day] += 1
 						auto_follow 
 					else
-						custom_puts "[+] ".cyan + "Maximum follows per day"
+						puts "[+] ".cyan + "Maximum follows per day".upcase
+						log("Maximum follows per day", "MODES")
 					end
 
 					if @maximums[:unfollows_in_day] != @maximums[:max_unfollows_per_day]
 						@maximums[:unfollows_in_day] += 1
 						auto_unfollow
 					else
-						custom_puts "[+] ".cyan + "Maximum unfollows per day"
+						puts "[+] ".cyan + "Maximum unfollows per day".upcase
+						log("Maximum unfollows per day", "MODES")
 					end
 
 					if @maximums[:likes_in_day] != @maximums[:max_likes_per_day]
 						@maximums[:likes_in_day] += 1
 						auto_like
 					else
-						custom_puts "[+] ".cyan + "Maximum likes per day"
+						puts "[+] ".cyan + "Maximum likes per day".upcase
+						log("Maximum likes per day", "MODES")
 					end
 
 					if @maximums[:comments_in_day] != @maximums[:max_comments_per_day]
 						@maximums[:comments_in_day] += 1
 						auto_comment
 					else
-						custom_puts "[+] ".cyan + "Maximum comments per day"
+						puts "[+] ".cyan + "Maximum comments per day".upcase
+						log("Maximum comments per day", "MODES")
 					end
 					# custom_print "maximums = #{@maximums}"
 					
@@ -48,14 +53,15 @@ module Modes
 				end
 			end
 		when :clean_up
-			custom_puts "[+] ".cyan + "Clean up mode is turned on"
+			puts "[+] ".cyan + "[Clean up] mode is turned on".upcase.yellow
+			log("[Clean up] mode is turned on", "MODES")
 			@local_stroage[:followed_users].each do |user|
 				unfollow(user)
 			end
 		when :default
-			custom_print "[-] ".cyan + "Please choose a mode".red
+			custom_print "[-] ".cyan + "Please choose a mode".upcase.red
 		else
-			custom_print "[-] ".cyan + "Please choose a mode".red
+			custom_print "[-] ".cyan + "Please choose a mode".upcase.red
 		end
 	end
 
@@ -71,7 +77,7 @@ module Modes
 	def auto_follow
 		all_users 	= users
 		id 			= 0
-		custom_puts "[+] ".cyan + "#{all_users.size} users ready to follow"
+		puts "[+] ".cyan + "#{all_users.size} user is ready to follow".upcase
 		# users.each do |user| 
 		while @maximums[:follows_in_day] < @maximums[:max_follows_per_day]
 			begin 
@@ -79,16 +85,16 @@ module Modes
 				get_user_informations(all_users[id])
 				# custom_print "user informations:".cyan
 				# @informations.map {|key,val| custom_print "#{key}: #{val}"}
-				custom_puts "[+] ".cyan + "Trying to follow a user [#{all_users[id]}]"
+				puts "[+] ".cyan + "Trying to follow user [#{all_users[id]}]"
 				follow(@informations[:id])
-				custom_puts "\n[+] ".cyan + "User followed!".green.bold
+				puts "[+] ".cyan + "User followed".upcase.green.bold
 				@maximums[:follows_in_day] += 1
 				id += 1
 				# custom_print "development informations: ".cyan
 				# custom_print "follows_in_day = #{@maximums[:follows_in_day]} || max_follows_per_day = #{@maximums[:max_follows_per_day]} || id = #{id}"
 				fall_in_asleep
 			rescue Exception => e
-				puts "an error detected ... #{e} #{e.backtrace}\nignored"
+				puts "an error detected ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\nignored"
 				id += 1
 				retry
 			end
@@ -99,29 +105,29 @@ module Modes
 	def auto_unfollow
 		# users.each do |user|
 		followed_users = @local_stroage[:followed_users]
-		custom_puts "[+] ".cyan + "#{followed_users.size} users ready to unfollow"
+		puts "[+] ".cyan + "#{followed_users.size} user is ready to unfollow".upcase
 		id = 0
 		while @maximums[:unfollows_in_day] < @maximums[:max_unfollows_per_day]
 			if @local_stroage[:followed_users].size < @maximums[:max_unfollows_per_day]
-			begin 
-				# get_user_informations(unfollowed_users[id])
-				# custom_print "user informations:".cyan
-				# @informations.map {|key,val| custom_print "#{key}: #{val}"}
-				# custom_print "unfollowed_users[id] => #{unfollowed_users[id]}"
-				custom_puts "[+] ".cyan + "Trying to unfollow a user [#{followed_users[id]}]"	
-				unfollow(followed_users[id])
-				custom_puts "\n[+] ".cyan + "User unfollowed".bold.green
-				@maximums[:unfollows_in_day] += 1
-				id += 1
-				# custom_print "unfollows_in_day = #{@maximums[:unfollows_in_day]} || max_unfollows_per_day = #{@maximums[:max_unfollows_per_day]} || id = #{id}"
-				fall_in_asleep
-			rescue Exception => e
-				puts "an error detected ... #{e}\nignored"
-				id += 1
-				retry
-			end
+				begin 
+					# get_user_informations(unfollowed_users[id])
+					# custom_print "user informations:".cyan
+					# @informations.map {|key,val| custom_print "#{key}: #{val}"}
+					# custom_print "unfollowed_users[id] => #{unfollowed_users[id]}"
+					puts "[+] ".cyan + "Trying to unfollow user [#{followed_users[id]}]"	
+					unfollow(followed_users[id])
+					puts "[+] ".cyan + "User unfollowed".upcase.bold.green
+					@maximums[:unfollows_in_day] += 1
+					id += 1
+					# custom_print "unfollows_in_day = #{@maximums[:unfollows_in_day]} || max_unfollows_per_day = #{@maximums[:max_unfollows_per_day]} || id = #{id}"
+					fall_in_asleep
+				rescue Exception => e
+					puts "an error detected ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\nignored"
+					id += 1
+					retry
+				end
 			else
-				custom_print "[+] ".cyan + "[unfollow per day] is bigger than [follow per day]"
+				custom_print "[+] ".cyan + "[unfollow per day] is much bigger than [follow per day]"
 				exit
 			end
 		end
@@ -130,22 +136,22 @@ module Modes
 	def auto_like
 		# medias.each do |media|
 		all_medias 	= medias
-		custom_puts "[+] ".cyan + "#{all_medias.size} Medias ready to like"
+		puts "[+] ".cyan + "#{all_medias.size} Media is ready to like".upcase
 		id 			= 0
 		while @maximums[:likes_in_day] < @maximums[:max_likes_per_day]
 			begin 
 				get_media_informations(all_medias[id])
 				# custom_print "media informations:".cyan
 				# @informations.map {|key,val| custom_print "#{key}: #{val}"}
-				custom_puts "[+] ".cyan + "Trying to like a media[#{all_medias[id]}]"	
+				puts "[+] ".cyan + "Trying to like media [#{all_medias[id]}]"	
 				like(@informations[:id])
-				custom_puts "\n[+] ".cyan + "Media liked".green.bold
+				puts "[+] ".cyan + "Media liked".upcase.green.bold
 				@maximums[:likes_in_day] += 1
 				# custom_print "likes_in_day = #{@maximums[:likes_in_day]} || max_likes_per_day = #{@maximums[:max_likes_per_day]}"
 				id += 1
 				fall_in_asleep
 			rescue Exception => e
-				puts "an error detected ... #{e}\n#{e.backtrace.inspect}\nignored"
+				puts "an error detected ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\nignored"
 				id += 1
 				retry
 			end
@@ -155,7 +161,7 @@ module Modes
 	def auto_comment
 		# medias.each do |media|
 		all_medias 	= medias
-		custom_puts "[+] ".cyan + "#{all_medias.size} Medias ready to send a comment"
+		puts "[+] ".cyan + "#{all_medias.size} Media is ready to send a comment".upcase
 		id 			= 0
 		while @maximums[:comments_in_day] < @maximums[:max_comments_per_day]
 			begin 
@@ -163,15 +169,15 @@ module Modes
 				id += 1 if @informations[:comments_disabled]
 				# custom_print "media informations:".cyan
 				# @informations.map {|key,val| custom_print "#{key}: #{val}"}
-				custom_puts "[+] ".cyan + "Trying to send a comment to media[#{all_medias[id]}]"	
+				puts "[+] ".cyan + "Trying to send a comment to media [#{all_medias[id]}]"	
 				comment(@informations[:id], generate_a_comment)
-				custom_puts "\n[+] ".cyan + "comment successfully has been sent".green.bold
+				puts "[+] ".cyan + "comment successfully has been sent".upcase.green.bold
 				@maximums[:comments_in_day] += 1
 				# custom_print "comments_in_day = #{@maximums[:comments_in_day]} || max_comments_per_day = #{@maximums[:max_comments_per_day]}"
 				id += 1
 				fall_in_asleep
 			rescue Exception => e
-				puts "an error detected ... #{e}\n#{e.backtrace.inspect}\nignored"
+				puts "an error detected ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\nignored"
 				id += 1
 				retry
 			end
@@ -190,8 +196,8 @@ module Modes
 
 	def check_date
 		# custom_print "checking time ..."
-		time = ((@next_day) - Time.new).to_i # => seconds elapsed ...
-		# custom_print "next day = #{@next_day}"
+		time = ((@tomorrow) - Time.new).to_i # => seconds elapsed ...
+		# custom_print "next day = #{@tomorrow}"
 		if time == 0
 
 			custom_print "[+] ".cyan + "It's a new day"
@@ -204,8 +210,8 @@ module Modes
 			@maximums[:likes_in_day] 			= 0
 			@maximums[:comments_in_day] 		= 0
 			# time = (((Time.new + 1.days).to_f - Time.new.to_f) * 24 * 60 * 60).to_i
-			@next_day = Time.new + 1.days
-			# custom_print "new next day = #{@next_day}"
+			@tomorrow = Time.new + 1.days
+			# custom_print "new next day = #{@tomorrow}"
 			# custom_print "new maximums = #{@maximums}"
 			# custom_print "new local stroage = #{@local_stroage}"
 			# custom_print "="*10
@@ -214,14 +220,19 @@ module Modes
 			end
 
 		else
-			custom_print "[+] ".cyan + "#{time} seconds remained"
+			empty_space =  IO.console.winsize[1] - text.size
+			empty_space = 0 if empty_space < 0 
+			print "\r[+] ".cyan + "#{time} seconds remained".upcase
+			$stdout.flush
+			print  " " * empty_space
+				# IO.console.flush
 		end 
 			# return true
 	end
 
 	def fall_in_asleep
 		time = options[:wait_per_action]
-		custom_puts "\n[+] ".cyan + "Waiting for #{time} seconds"
+		puts "[+] ".cyan + "Waiting for #{time} seconds".upcase
 		sleep time
 	end
 

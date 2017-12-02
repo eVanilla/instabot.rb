@@ -18,6 +18,7 @@ class Instabot
 		@users 					= []
 		@medias 				= []
 		@log_counter			= 0
+		@login_counter 			= 1
 		@login_status			= false
 		@lib_dir				= "#{Dir.pwd}/lib"
 		@root_dir				= "#{Dir.pwd}"
@@ -82,8 +83,10 @@ class Instabot
 				:wait_per_action		=> 		Config.options.wait_per_action,
 				:comments  				=> 		Config.options.comments,
 				:pre_load  				=> 		Config.options.pre_load,
-				:pretty_print			=> 		Config.options.pretty_print,
+				:use_proxy 				=> 		Config.options.use_proxy,
+				:proxy 					=> 		Config.options.proxy,
 				:print_banner			=> 		Config.options.print_banner
+				# :pretty_print			=> 		Config.options.pretty_print,
 				# :print_logs 			=> 		Config.options.print_logs
 			}
 		else
@@ -96,28 +99,28 @@ class Instabot
 		end
 	end
 
-	def custom_puts(text="")
-		pretty_print_mode = options[:pretty_print]
-		if pretty_print_mode
-			puts "#{text}"
-		else
-			puts "#{text}".colorize(color: :white, background: :default)
-		end
-	end
+	# def custom_puts(text="")
+	# 	# pretty_print_mode = options[:pretty_print]
+	# 	# if pretty_print_mode
+	# 		puts "#{text}"
+	# 	# else
+	# 		# puts "#{text}".colorize(color: :white, background: :default)
+	# 	# end
+	# end
 	
-	def custom_print(text="")
-		pretty_print_mode = options[:pretty_print]
-		empty_space =  IO.console.winsize[1] - text.size
-		empty_space = 0 if empty_space < 0 
-		if pretty_print_mode
-			print "\r#{text}"
-			# $stdout.flush
-			print  " " * empty_space
-			# IO.console.flush
-		else
-			print "#{text}\n".white
-		end
-	end
+	# def custom_print(text="")
+	# 	# pretty_print_mode = options[:pretty_print]
+	# 	# empty_space =  IO.console.winsize[1] - text.size
+	# 	# empty_space = 0 if empty_space < 0 
+	# 	# if pretty_print_mode
+	# 		# print "\r#{text}"
+	# 		# $stdout.flush
+	# 		# print  " " * empty_space
+	# 		# IO.console.flush
+	# 	# else
+	# 		print "#{text}"
+	# 	# end
+	# end
 
 
 
@@ -125,14 +128,13 @@ class Instabot
 		trap("INT") { exit! }
 		print_banner
 		check_log_files
+		log("log files are checked", "CORE")
+		log("Machine started","CORE")
 		create_mechanic
-		custom_print "[+] ".cyan + "Processing successfully completed"
-		puts
-		
-		if mode == :default
+		puts "[+] ".cyan + "Processing successfully completed"
+		log("Processing successfully completed", "CORE")
+		unless mode != :default
 			login
-		elsif mode == :manual
-		else
 		end
 
 	end

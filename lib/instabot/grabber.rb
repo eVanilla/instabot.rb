@@ -2,23 +2,27 @@ module Grabber
 
 	def get_user_informations(user_id)
 		# puts "=".cyan*10
-		begin
-			user_page 	= "https://www.instagram.com/web/friendships/#{user_id}/follow/"
-			response 	= get_page(user_page)
-			last_page 	= @agent.history.last.uri.to_s
-			username	= last_page.split('/')[3]
-			response 	= @agent.get("https://instagram.com/#{username}/?__a=1")
-		rescue Exception => e
-			if response.code == "404"
-				puts "ERORR: [404] Notfound\t#{e.message}".red
-				exit!
-			elsif response.code == "403"
-				exit! if @error_403_times == 3
-				@error_403_times += 1 
-				puts "ERROR: [403] (looks like you're banned from IG)".red
-				retry
-			end
-		end	
+		# begin
+		puts "[+] ".cyan + "Trying to get user (#{user_id}) informations"
+		log("Trying to get user (#{user_id}) informations", "GRABBER")
+		user_page 	= "https://www.instagram.com/web/friendships/#{user_id}/follow/"
+		response 	= get_page(user_page)
+		last_page 	= response.uri.to_s
+		username	= last_page.split('/')[3]
+		pp username
+		pp last_page
+		response 	= @agent.get("https://instagram.com/#{username}/?__a=1")
+		# rescue Exception => e
+		# 	if response.code == "404"
+		# 		puts "ERORR: [404] Notfound\t#{e.message}".red
+		# 		exit!
+		# 	elsif response.code == "403"
+		# 		exit! if @error_403_times == 3
+		# 		@error_403_times += 1 
+		# 		puts "ERROR: [403] (looks like you're banned from IG)".red
+		# 		retry
+		# 	end
+		# end	
 		data = JSON.parse(response.body)
 		data.extend Hashie::Extensions::DeepFind
 
@@ -38,20 +42,21 @@ module Grabber
 
 	def get_media_informations(media_id)
 		# puts "=".cyan*10
-		custom_puts "[+] ".cyan + "Trying to get media (#{media_id}) information"
-		begin
-			response 	= @agent.get("https://www.instagram.com/p/#{media_id}/?__a=1")
-		rescue Exception => e
-			if response.code == "404"
-				puts "ERORR: [404] Notfound\t#{e.message}".red
-				exit!
-			elsif response.code == "403"
-				exit! if @error_403_times == 3
-				@error_403_times += 1 
-				puts "ERROR: [403] (looks like you're banned from IG)".red
-				retry
-			end
-		end	
+		puts "[+] ".cyan + "Trying to get media (#{media_id}) informations"
+		log("Trying to get media (#{media_id}) informations","GRABBER")
+		# begin
+		response = @agent.get("https://www.instagram.com/p/#{media_id}/?__a=1")
+		# rescue Exception => e
+		# 	if response.code == "404"
+		# 		puts "ERORR: [404] Notfound\t#{e.message}".red
+		# 		exit!
+		# 	elsif response.code == "403"
+		# 		exit! if @error_403_times == 3
+		# 		@error_403_times += 1 
+		# 		puts "ERROR: [403] (looks like you're banned from IG)".red
+		# 		retry
+		# 	end
+		# end	
 		data 		= JSON.parse(response.body)
 		data.extend Hashie::Extensions::DeepFind
 		# pp data.extend Hashie::Extensions::DeepFind
@@ -92,7 +97,7 @@ module Grabber
 					Config.options.tags << tag 
 				end
 			end
-			custom_puts "\n[+] ".cyan + "[" + "#{id}".yellow + "] New tags added"
+			puts "[+] ".cyan + "[" + "#{id}".yellow + "] New tags added"
 			# pp Config.options.tags
 		end
 		# puts @informations
@@ -104,7 +109,8 @@ module Grabber
 	def search(tags=[])
 		tags.each do |tag|
 			url 		= "https://www.instagram.com/explore/tags/#{tag}/?__a=1"
-			custom_print "[+] ".cyan + "Searching in [##{tag}] tag"
+			puts "[+] ".cyan + "Searching in hashtags [##{tag}]"
+			log("Searching in hashtags [##{tag}]", "GRABBER")
 			response 	= @agent.get(url)
 			# puts response.body.to_s.cyan[0..50]
 			data = JSON.parse(response.body)
@@ -115,8 +121,9 @@ module Grabber
 			media_codes.map {|code| medias << code}
 			Config.options.tags.delete(tag)
 		end
-		custom_puts "\n[+] ".cyan + "Total grabbed users [" + "#{users.size}".yellow + "]"
-		custom_puts "[+] ".cyan + "Total grabbed medias [" + "#{medias.size}".yellow + "]\n"
+		puts "[+] ".cyan + "Total grabbed users [" + "#{users.size}".yellow + "]"
+		puts "[+] ".cyan + "Total grabbed medias [" + "#{medias.size}".yellow + "]"
+		log("Total grabbed users(#{users.size}) & Total grabbed medias(#{medias.size})", "GRABBER")
 	end	
 
 

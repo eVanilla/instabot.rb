@@ -1,22 +1,31 @@
 module Protocol
+
 	def create_mechanic
-		puts Dir.glob("")
 		@agent 					= Mechanize.new
 		@agent.max_history 		= 2
 		# @agent.log 				= Logger.new(STDOUT)
-		@agent.ca_file			= "./cacert.pem"
-		@agent.user_agent_alias = "Mac Safari"
-		# @agent.set_proxy()
-		custom_print "PROCESSING: ".cyan.bold + "protocol created"
-	end
+		@agent.ca_file			= "./cacert.pem" # => FOR WINDOWS USERS
+		# @agent.user_agent_alias = Mechanize::AGENT_ALIASES.to_a.sample[0]
+		@agent.user_agent_alias = ['Mac Mozilla','Mac Safari','Windows IE 6','Windows IE 7','Windows IE 8','Windows IE 9','Windows Mozilla','Windows Chrome'].sample
+		if options[:use_proxy]
+			proxy = options[:proxy]
+			if proxy.size == 2
+				@agent.set_proxy(proxy[0], proxy[1].to_i)
+			else 
+				@agent.set_proxy(proxy[0], proxy[1].to_i, proxy[2], proxy[3])
+			end
+		end
 
+		# @agent.set_proxy()
+		puts "PROCESSING: ".cyan.bold + "protocol created"
+		log("Protocol successfully created", "CREATE_PROTOCOL")
+	end
 
 	def get_page(url)
 		response = @agent.get(url)
 		# @temp_jar = @agent.cookie_jar
 		# @temp_jar.save("#{@lib_dir}/cookies.yaml", session: true)	# => saving the cookies
 	end
-
 
 	def set_mechanic_data(params={})
 			@cookies 	= Hash[@agent.cookies.map {|key, value| [key.name, key.value]}]

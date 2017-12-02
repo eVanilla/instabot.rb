@@ -1,8 +1,8 @@
 module Actions
 	
 	def follow(user_id)
-		log("trying to follow a user [#{user_id}]")
-		check_login_status(:auto_retry)
+		log("trying to follow a user [#{user_id}]", "ACTIONS")
+		check_login_status()
 		follow_url = "https://www.instagram.com/web/friendships/#{user_id}/follow/"
 		set_mechanic_data
 		response = @agent.post(follow_url, @params, @headers)
@@ -13,8 +13,8 @@ module Actions
 	end
 
 	def unfollow(user_id)
-		log("trying to unfollow a user [#{user_id}]")
-		check_login_status(:auto_retry)
+		log("trying to unfollow a user [#{user_id}]", "ACTIONS")
+		check_login_status()
 		unfollow_url = "https://www.instagram.com/web/friendships/#{user_id}/unfollow/"
 		set_mechanic_data
 		response = @agent.post(unfollow_url, @params, @headers)
@@ -25,8 +25,8 @@ module Actions
 	end
 
 	def like(media_id)
-		log("trying to like a media[#{media_id}]")
-		check_login_status(:auto_retry)
+		log("trying to like a media[#{media_id}]", "ACTIONS")
+		check_login_status()
 		comment_url = "https://www.instagram.com/web/likes/#{media_id}/like/"
 		set_mechanic_data
 		response = @agent.post(comment_url, @params, @headers)
@@ -36,9 +36,9 @@ module Actions
 		return({media_id: media_id, response_code: response.code})
 	end
 
-	def comment(media_id=0, text="")
-		log("trying to send a comment to media[#{media_id}]")
-		check_login_status(:auto_retry)
+	def comment(media_id, text="")
+		log("trying to send a comment to media[#{media_id}]", "ACTIONS")
+		check_login_status()
 		comment_url = "https://www.instagram.com/web/comments/#{media_id}/add/"
 		set_mechanic_data({ comment_text: text.to_s })
 		response = @agent.post(comment_url, @params, @headers)

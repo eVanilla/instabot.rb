@@ -1,13 +1,22 @@
 module Log
 
 	def check_log_files
-		custom_print "PROCESSING: ".cyan.bold + "checking log files"
+		puts "PROCESSING: ".cyan.bold + "checking log files"
+		log("checking log files", "LOGGER")
 		if !File.exists?(@logs_dir)
 			Dir.mkdir(@logs_dir)
 		end
-		
-		if File.exists?("#{@logs_dir}/logs.log")
-			# File.delete("#{@logs_dir}/logs.log")
+
+		if options[:pre_load]
+			if Dir.exists?('./logs')
+				files = ["commented_medias", "followed_users", "liked_medias", "unfollowed_users"]
+				files.each do |file|
+					File.open("./logs/#{file}.txt","r+") do |buffer|
+						data = buffer.read.split(',')
+						@local_stroage[file.to_sym] = data 
+					end
+				end
+			end
 		end
 	end
 
@@ -17,8 +26,12 @@ module Log
 
 	def log(text="",from="")
 		time = Time.new.strftime("%H:%M:%S %y-%m-%d")
-		File.open("#{@logs_dir}/logs-#{@global_time}.log","a+") do |log_file|
-			log_file.puts "[#{@log_counter}] [#{time}] [#{from}] -- : #{text}"
+		if File.exists?(@logs_dir)
+			File.open("#{@logs_dir}/logs-#{@global_time}.log","a+") do |log_file|
+				log_file.puts "[#{@log_counter}] [#{time}] [#{from}] -- : #{text}"
+			end
+		else
+			Dir.mkdir(@logs_dir)
 		end
 		@log_counter += 1
 	end
@@ -34,9 +47,9 @@ module Log
 		when :comment
 			write_file("commented_medias.txt",id)
 		when :default
-			puts "please choice a type"
+			puts "please choose a type"
 		else
-			puts "please choice a type"
+			puts "please choose a type"
 		end
 	end
 
