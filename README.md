@@ -12,7 +12,7 @@ if you like it just... hit the star button to make me happy! (≖ᴗ≖✿)
 ## installation
 
 Add this to your __Gemfile__:
-```ruby
+```
 gem 'instabot'
 ```
 and be sure you run this ```bundle install``` command.
@@ -49,7 +49,7 @@ Config.setup do |set|
     set.username                = 'replace_your_username'
     set.password                = 'replace_your_password'
     set.tags                    = ["test","hello","birthday"]
-    set.wait_per_action         = 1 * 60 # => seconds
+    set.wait_per_action         = 1 * 60 # => second
     set.max_like_per_day        = 50
     set.max_follow_per_day      = 50
     set.max_unfollow_per_day    = 50
@@ -57,13 +57,13 @@ Config.setup do |set|
     set.infinite_tags           = true
     set.print_banner            = true
     set.pre_load                = false
-    set.comments                = [	
-		["this", "the", "your"],
-		["photo", "picture", "pic", "shot", "snapshot"],
-		["is", "looks", "feels", "is really"],
-		["great", "super", "good", "very good", "good","wow", "WOW", "cool", "GREAT","magnificent","magical", "very cool", "stylish", "beautiful","so beautiful", "so stylish","so professional","lovely", "so lovely","very lovely", "glorious","so glorious","very glorious", "adorable", "excellent","amazing"], 
-		[".", "..", "...", "!","!!","!!!"]
-	]
+    set.comments                = [ 
+        ["this", "the", "your"],
+        ["photo", "picture", "pic", "shot", "snapshot"],
+        ["is", "looks", "feels", "is really"],
+        ["great", "super", "good", "very good", "good","wow", "WOW", "cool", "GREAT","magnificent","magical", "very cool", "stylish", "beautiful","so beautiful", "so stylish","so professional","lovely", "so lovely","very lovely", "glorious","so glorious","very glorious", "adorable", "excellent","amazing"], 
+        [".", "..", "...", "!","!!","!!!"]
+    ]
 end
 
 bot = Instabot.new # => Available modes => :manual, :default => default mode is :default 
@@ -98,35 +98,8 @@ pre_load | load pre configurations in **logs** folder | ```followed_users.txt```
 use_proxy | enabling and disabling the proxy usage | ```true``` or ```false```
 proxy | http(s) proxy details | write it on an array form like this ```["IP",PORT]``` or if it has username and password you have to use this format ```["IP",PORT,"USERNAME","PASSWORD"]``` 
 
-<<<<<<< HEAD
 **Development description:**
 > Methods are available on rubydoc.
-=======
-
-
-## Development description
-
-Current available **modes** ```:infinite``` ```:clean_up```
-
-**:infinite** it will make a infinite loop
-
-**:clean_up** it will unfollow all the followed users
-
-
-method | description | example
------------- | ------------- | -------------
-```clients``` | all the grabbed users | ```bot.users```
-```medias``` | all the grabbed medias | ```bot.medias```
-```log()``` | no comment! | ```log("log text here ...")```
-```get_user_informations()``` | return an object ```# => @informations [ :followers, :following, :is_private, :is_verified, :username, :full_name, :full_name, :id]``` | ```get_user_informations(user_id)```
-```get_media_informations()``` | return an object ```# => @informations [ :text, :requested_by_viewer, :is_verified, :is_private, :full_name, :followed_by_viewer, :has_blocked_viewer, :viewer_has_liked, :comments_disabled, :is_video, :id]``` | ```get_media_informations(media_id)```
-```search()``` | Grabbing users and medias by tags (input should be an array) | ```search(["tags"])``` array form 
-```check_login_status()``` | Checking login status it will return (```true``` or ```false```) | ```check_login_status()``` also it has a auto retry ability ```check_login_status(:auto_retry)``` 
-```generate_a_comment()``` | return a random string object __(comment)__ | ```generate_a_comment()```
-```logout()``` | logging out from current account | ```logout()```
-```get_page()``` | exploring the page with current cookies and session | ```get_page('page_url')```  
-> all another methods are available on rubydoc
->>>>>>> 8e76e9b0b3359495ca37ac503d3a77e7031600b9
 
 
 
@@ -143,8 +116,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/eVanil
 
 ## What's new in the future ?
 
-<<<<<<< HEAD
 No idea... what do you think?
-=======
-* rewriting the code and enabling the proxy usage 
->>>>>>> 8e76e9b0b3359495ca37ac503d3a77e7031600b9
