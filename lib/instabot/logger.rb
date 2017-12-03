@@ -9,7 +9,7 @@ module Log
 
 		if options[:pre_load]
 			if Dir.exists?('./logs')
-				files = ["commented_medias", "followed_users", "liked_medias", "unfollowed_users"]
+				files = ['commented_medias', 'followed_users', 'liked_medias', 'unliked_medias', 'unfollowed_users']
 				files.each do |file|
 					File.open("./logs/#{file}.txt","r+") do |buffer|
 						data = buffer.read.split(',')
@@ -44,6 +44,8 @@ module Log
 			write_file("unfollowed_users.txt",id)
 		when :like
 			write_file("liked_medias.txt",id)
+    when :unlike
+      write_file("unliked_medias.txt",id)
 		when :comment
 			write_file("commented_medias.txt",id)
 		when :default

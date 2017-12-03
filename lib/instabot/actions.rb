@@ -36,6 +36,18 @@ module Actions
 		return({media_id: media_id, response_code: response.code})
 	end
 
+  def unlike(media_id)
+    log("trying to unlike a media[#{media_id}]", "ACTIONS")
+    check_login_status()
+    comment_url = "https://www.instagram.com/web/likes/#{media_id}/unlike/"
+    set_mechanic_data
+    response = @agent.post(comment_url, @params, @headers)
+    # custom_puts "[+] ".cyan + "Media unliked".bold.cyan
+    save_action_data media_id, :unlike
+    @local_stroage[:unliked_medias] << media_id
+    return({media_id: media_id, response_code: response.code})
+  end
+
 	def comment(media_id, text="")
 		log("trying to send a comment to media[#{media_id}]", "ACTIONS")
 		check_login_status()
