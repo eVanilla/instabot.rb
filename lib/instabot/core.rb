@@ -26,10 +26,11 @@ class Instabot
 		@global_time 			= Time.new.strftime("%H-%M-%S--%y-%m-%d")
 		Configuration.new if @login_mode == :manual
 		@local_stroage 			= {
-			:followed_users 	=> [],
-			:unfollowed_users 	=> [],
-			:liked_medias 		=> [],
-			:commented_medias 	=> []
+			followed_users: [],
+			unfollowed_users: [],
+			liked_medias: [],
+      unliked_medias: [],
+			commented_medias: []
 		}  
 
 		@maximums = {
