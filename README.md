@@ -24,7 +24,7 @@ $ gem install instabot --no-ri --no-rdoc
 
 ## Usage
 
-here is the **manual** usage:
+here is the **manual** example:
 
 ```ruby
 require 'instabot' 
@@ -35,12 +35,13 @@ bot.login("username","password") # => manual login
 bot.follow(11111111) # user id
 bot.unfollow(11111111) # user id
 bot.like(1111111) # media id
+bot.unlike(1111111) # media id
 bot.comment(1111111, "comment text here") # media id
 
 bot.logout() # => logout from current account
 ```
 
-and here is the **automatic** usage:
+and here is the **automatic** example:
 
 ```ruby
 require 'instabot' 
@@ -116,4 +117,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/eVanil
 
 ## What's new in the future ?
 
-No idea... what do you think?
+Still no idea... what do you think?
