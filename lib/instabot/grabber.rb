@@ -56,7 +56,7 @@ module Grabber
 
   def search(tags = [])
     tags.each do |tag|
-      puts '[+] '.cyan + "Searching in hashtags [##{tag}]"
+      puts '[+] '.cyan + "Searching in hashtag [##{tag}]"
       log("Searching in hashtags [##{tag}]", 'GRABBER')
       url	        = "https://www.instagram.com/explore/tags/#{tag}/?__a=1"
       response    = @agent.get(url)

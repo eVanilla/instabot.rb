@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['']
 
   spec.summary       = 'Ruby instagram bot'
-  spec.description   = 'A instagram bot works without instagram api, only needs your username and password'
+  spec.description   = 'An instagram bot works without instagram api, only needs your username and password'
   spec.homepage      = 'https://github.com/eVanilla/instabot.rb'
   spec.license       = 'MIT'
 

@@ -10,9 +10,11 @@ module Log
       if Dir.exists?('./logs')
         files = %w[commented_medias followed_users liked_medias unliked_medias unfollowed_users]
         files.each do |file|
-          File.open("./logs/#{file}.txt", 'r+') do |buffer|
-            data                        = buffer.read.split(',')
-            @local_stroage[file.to_sym] = data
+          if File.exists?("./logs/#{file}.txt")
+            File.open("./logs/#{file}.txt", 'r+') do |buffer|
+              data                        = buffer.read.split(',')
+              @local_stroage[file.to_sym] = data
+            end
           end
         end
       end

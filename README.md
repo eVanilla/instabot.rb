@@ -4,8 +4,6 @@
 
 An instagram bot works without instagram api, only needs your username and password. written on ruby.
 
-if you like it just... hit the star button to make me happy! (≖ᴗ≖✿)
- 
 ![#](https://img.shields.io/gem/dt/instabot.svg?label=DOWNLOADS&style=for-the-badge) 
 ![#](https://img.shields.io/gem/v/instabot.svg?label=GEM&style=for-the-badge)
 
@@ -24,7 +22,7 @@ $ gem install instabot --no-ri --no-rdoc
 
 ## Usage
 
-here is the **manual** example:
+here is the **manual** usage:
 
 ```ruby
 require 'instabot' 
@@ -41,7 +39,7 @@ bot.comment(1111111, "comment text here") # media id
 bot.logout() # => logout from current account
 ```
 
-and here is the **automatic** example:
+and here is the **automatic** usage:
 
 ```ruby
 require 'instabot' 
@@ -100,6 +98,7 @@ use_proxy | enabling and disabling the proxy usage | ```true``` or ```false```
 proxy | http(s) proxy details | write it on an array form like this ```["IP",PORT]``` or if it has username and password you have to use this format ```["IP",PORT,"USERNAME","PASSWORD"]``` 
 
 **Development description:**
+
 > Methods are available on rubydoc.
 
 
@@ -108,6 +107,10 @@ proxy | http(s) proxy details | write it on an array form like this ```["IP",POR
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/eVanilla/instabot.rb
 
+Also i have to say thank you for all you guys who contributed on this project __( i have to make a list of it )__
+
+and if you like it just... hit the star button to make me__(us)__ happy! (≖ᴗ≖✿)
+ 
 ## Used gems
 
 * Activesupport

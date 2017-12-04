@@ -6,7 +6,6 @@ module Modes
       log('[Auto] mode is turned on', 'MODES')
       search(options[:tags])
       @tomorrow = Time.new + 1.days
-      @today    = Time.new
       loop do
         if !maximums_are_full?
           if !follows_in_day_are_full?
@@ -52,9 +51,9 @@ module Modes
         unfollow(user)
       end
     when :default
-      custom_print '[-] '.cyan + 'Please choose a mode'.upcase.red
+      puts '[-] '.cyan + 'Please choose a mode'.upcase.red
     else
-      custom_print '[-] '.cyan + 'Please choose a mode'.upcase.red
+      puts '[-] '.cyan + 'Please choose a mode'.upcase.red
     end
   end
 
@@ -99,7 +98,7 @@ module Modes
           retry
         end
       else
-        custom_print '[+] '.cyan + '[unfollow per day] is much bigger than [follow per day]'
+        puts '[+] '.cyan + '[unfollow per day] is much bigger than [follow per day]'
         exit
       end
     end
@@ -161,7 +160,7 @@ module Modes
   def check_date
     time = (@tomorrow - Time.new).to_i # => seconds elapsed ...
     if time.zero?
-      custom_print '[+] '.cyan + "It's a new day"
+      puts '[+] '.cyan + "It's a new day"
       @local_stroage[:followed_users]   = []
       @local_stroage[:unfollowed_users] = []
       @local_stroage[:liked_medias]     = []
@@ -204,7 +203,7 @@ module Modes
   end
 
   def maximums_are_full?
-    likes_in_day_are_full? && follows_in_day_are_full? &&
+      likes_in_day_are_full? && follows_in_day_are_full? &&
       unfollows_in_day_are_full? && comments_in_day_are_full?
   end
 end

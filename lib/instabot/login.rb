@@ -8,7 +8,7 @@ module Login
       password = options[:password]
     end
 
-    log("Trying to login into [#{username}] account", 'LOGIN')
+    log('trying to login', 'LOGIN')
     puts '[+] '.cyan + "Trying to login into [#{username}] account"
     login_page         = @agent.get('https://www.instagram.com/accounts/login/?force_classic_login')
     page_form          = login_page.forms.last
@@ -23,16 +23,17 @@ module Login
     else
       @login_status = false
       if page.uri.to_s.include?('challenge')
-        puts '[-] '.cyan + 'Your account needs veryfication or it has banned from instagram'.red.bold
+        puts '[-] '.cyan + 'Your account needs veryfication or it has been banned from instagram'.red.bold
       else
         puts '[-] '.cyan + 'Invalid username or password'.red.bold
       end
       check_login_status
     end
+
   rescue Exception => e
     log("an error detected: #{e.class} #{e} #{e.backtrace}", 'LOGIN')
     @login_status = false
-    puts '[-] '.cyan + "#{e.class} #{e.message}".red
+    puts '[-] '.cyan + "#{e.class} #{e.message}\n check out the log file for full trace ".red
     exit
   end
 
