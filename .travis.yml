@@ -1,8 +1,10 @@
 language: ruby
 rvm:
-  - 2.2
-  - 2.0.0-p247
-before_install:
-  - gem update --system
-  - gem --version
-  - gem install instabot --no-ri --no-rdoc
+- 2.3.0
+- 2.2.4
+bundler_args: --jobs=2
+script:
+  - rspec
+cache: bundler
+addons:
+  instabot: "1.0.52"
