@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-# gemspec
+gem 'rake'
+gem 'rspec'
 gem 'activesupport'
 gem 'colorize'
 gem 'hashie'
