@@ -2,10 +2,11 @@
 
 # instabot.rb
 
-An instagram bot works without instagram api, only needs your username and password. written on ruby.
+An instagram bot works without instagram api, only needs your username and password. written in ruby.
 
 ![#](https://img.shields.io/gem/dt/instabot.svg?label=DOWNLOADS&style=for-the-badge) 
 ![#](https://img.shields.io/gem/v/instabot.svg?label=GEM&style=for-the-badge)
+![#](https://img.shields.io/travis/eVanilla/instabot.rb.svg?label=BUILD&style=for-the-badge)
 
 ## installation
 
@@ -13,9 +14,9 @@ Add this to your __Gemfile__:
 ```
 gem 'instabot'
 ```
-and be sure you run this ```bundle install``` command.
+and make sure you run this ```bundle install``` command
 
-or install it for yourself:
+or install it for yourself as
 ```
 $ gem install instabot --no-ri --no-rdoc
 ```
@@ -107,7 +108,7 @@ proxy | http(s) proxy details | write it on an array form like this ```["IP",POR
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/eVanilla/instabot.rb
 
-Also i have to say thank you for all you guys who contributed to this project __( i have to make a list of it )__
+Also i have to say thank you for all you guys who contributed on this project
 
 and if you like it just... hit the star button to make me __(us)__ happy! (≖ᴗ≖✿)
  
