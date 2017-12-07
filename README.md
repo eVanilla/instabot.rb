@@ -107,9 +107,9 @@ proxy | http(s) proxy details | write it on an array form like this ```["IP",POR
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/eVanilla/instabot.rb
 
-Also i have to say thank you for all you guys who contributed on this project __( i have to make a list of it )__
+Also i have to say thank you for all you guys who contributed to this project __( i have to make a list of it )__
 
-and if you like it just... hit the star button to make me__(us)__ happy! (≖ᴗ≖✿)
+and if you like it just... hit the star button to make me __(us)__ happy! (≖ᴗ≖✿)
  
 ## Used gems
 
