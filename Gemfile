@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
-gem 'activesupport'
-gem 'colorize'
-gem 'hashie'
-gem 'instabot'
-gem 'mechanize'
+gemspec
+# gem 'activesupport'
+# gem 'colorize'
+# gem 'hashie'
+# gem 'instabot'
+# gem 'mechanize'
