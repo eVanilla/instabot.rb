@@ -16,7 +16,7 @@ gem 'instabot'
 ```
 and make sure you run this ```bundle install``` command
 
-or install it for yourself as
+or install for yourself
 ```
 $ gem install instabot --no-ri --no-rdoc
 ```
