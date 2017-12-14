@@ -148,13 +148,9 @@ module Modes
   end
 
   def generate_a_comment
-    comments 	 = options[:comments]
-    first 		   = comments[0].sample
-    second 		  = comments[1].sample
-    third 		   = comments[2].sample
-    fourth		   = comments[3].sample
-    fifth 		   = comments[4].sample
-    "#{first} #{second} #{third} #{fourth}#{fifth}"
+    comment = ""
+    options[:comments].each { |c| comment << " #{c.sample}" }
+    comment
   end
 
   def check_date
