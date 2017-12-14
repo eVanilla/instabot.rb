@@ -9,8 +9,8 @@ module Banner
  ██║██║ ╚████║███████║   ██║   ██║  ██║██████╔╝╚██████╔╝   ██║
  ╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═════╝  ╚═════╝    ╚═╝
 
-    	BANNER
-      puts 'An instagram bot works without instagram api '.white.bold + 'github.com/'.cyan + 'eVanilla'.cyan.bold.italic
+        BANNER
+      puts 'An instagram bot works without instagram api '.white.bold + 'github.com/'.cyan + 'eVanilla/instabot.rb'.cyan.bold.italic
     end
   end
 end

@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'instabot'
   spec.version       = Instabot::VERSION
   spec.authors       = ['eVanilla']
-  spec.email         = ['']
+  spec.email         = ['evoke.lektrique@gmail.com']
 
   spec.summary       = 'Ruby instagram bot'
   spec.description   = 'An instagram bot works without instagram api, only needs your username and password'

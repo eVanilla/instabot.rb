@@ -37,7 +37,7 @@ module Log
     @log_counter += 1
   end
 
-  def save_action_data(id = 0, type = :default)
+  def save_action_log(id = 0, type = :default)
     case type
     when :follow
       write_file('followed_users.txt', id)

@@ -1,4 +1,7 @@
+
+# automatic module and helpers
 module Modes
+  # main def and mode selector
   def mode(mode = :default)
     case mode
     when :infinite
@@ -58,8 +61,8 @@ module Modes
   end
 
   def auto_follow
-    all_users 	 = users
-    id 			      = 0
+    all_users    = users
+    id            = 0
     puts '[+] '.cyan + "#{all_users.size} user is ready to follow".upcase
     while @maximums[:follows_in_day] < @maximums[:max_follows_per_day]
       begin
@@ -72,7 +75,7 @@ module Modes
         id                         += 1
         fall_in_asleep
       rescue Exception => e
-        puts "an error detected ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\nignored"
+        puts "An error occured ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\n[ignored]"
         id += 1
         retry
       end
@@ -93,7 +96,7 @@ module Modes
           id                           += 1
           fall_in_asleep
         rescue Exception => e
-          puts "an error detected ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\nignored"
+          puts "An error occured ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\n[ignored]"
           id += 1
           retry
         end
@@ -105,9 +108,9 @@ module Modes
   end
 
   def auto_like
-    all_medias	= medias
+    all_medias  = medias
     puts '[+] '.cyan + "#{all_medias.size} Media is ready to like".upcase
-    id 			= 0
+    id      = 0
     while @maximums[:likes_in_day] < @maximums[:max_likes_per_day]
       begin
         get_media_informations(all_medias[id])
@@ -118,7 +121,7 @@ module Modes
         id                       += 1
         fall_in_asleep
       rescue Exception => e
-        puts "an error detected ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\nignored"
+        puts "An error occured ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\n[ignored]"
         id += 1
         retry
       end
@@ -126,27 +129,32 @@ module Modes
   end
 
   def auto_comment
-    all_medias	= medias
-    puts '[+] '.cyan + "#{all_medias.size} Media is ready to send a comment".upcase
-    id 			= 0
+    all_medias  = medias
+    # puts '[+] '.cyan + "#{all_medias.size} Media is ready".upcase
+    id      = 0
     while @maximums[:comments_in_day] < @maximums[:max_comments_per_day]
       begin
         get_media_informations(all_medias[id])
-        id += 1 if @informations[:comments_disabled]
-        puts '[+] '.cyan + "Trying to send a comment to media [#{all_medias[id]}]"
-        comment(@informations[:id], generate_a_comment)
-        puts '[+] '.cyan + 'comment successfully has been sent'.upcase.green.bold
+        if @informations[:comments_disabled]
+          puts '[-]'.red + 'comments are disable' + "\t[IGNORING]".yellow
+          id += 1 
+          next
+        end
+        generated_comment = generate_a_comment
+        puts '[+] '.cyan + "Trying to send a comment[#{generated_comment}] to media[#{all_medias[id]}]"
+        comment(@informations[:id], generated_comment)
+        puts '[+] '.cyan + 'comment has been sent'.upcase.green.bold
         @maximums[:comments_in_day] += 1
         id                          += 1
         fall_in_asleep
       rescue Exception => e
-        puts "an error detected ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\nignored"
+        puts "An error occured ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\n[ignored]"
         id += 1
         retry
       end
     end
   end
-
+  # genrating random comment 
   def generate_a_comment
     comment = ""
     options[:comments].each { |c| comment << " #{c.sample}" }
@@ -154,7 +162,7 @@ module Modes
   end
 
   def check_date
-    time = (@tomorrow - Time.new).to_i # => seconds elapsed ...
+    time = (@tomorrow - Time.new).to_i # => remained time ...
     if time.zero?
       puts '[+] '.cyan + "It's a new day"
       @local_stroage[:followed_users]   = []
@@ -168,11 +176,9 @@ module Modes
       @tomorrow                         = Time.new + 1.days
       search(options[:tags]) unless @infinite_tags == true
     else
-      empty_space = IO.console.winsize[1] - text.size
-      empty_space = 0 if empty_space < 0
-      print "\r[+] ".cyan + "#{time} seconds remained".upcase
+      time = Time.at(time).utc.strftime("%H:%M:%S")
+      print "\r[+] ".cyan + "#{time} remained".upcase + ' '*10 # the empty space
       $stdout.flush
-      print ' ' * empty_space
     end
   end
 

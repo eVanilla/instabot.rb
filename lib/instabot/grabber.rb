@@ -15,6 +15,7 @@ module Grabber
       is_private:  data.deep_find('is_private'),
       is_verified: data.deep_find('is_verified'),
       username:    data.deep_find('username'),
+      posts:       data.deep_find('media')['count'],
       full_name:   data.deep_find('full_name'),
       id:          data.deep_find('id')
     }
@@ -28,20 +29,22 @@ module Grabber
 
     @informations = {
       id:                  data.deep_find('id'),
+      full_name:           data.deep_find('full_name'),
+      owner:               data.deep_find('owner')['username'],
       is_video:            data.deep_find('is_video'),
       comments_disabled:   data.deep_find('comments_disabled'),
       viewer_has_liked:    data.deep_find('viewer_has_liked'),
       has_blocked_viewer:  data.deep_find('has_blocked_viewer'),
       followed_by_viewer:  data.deep_find('followed_by_viewer'),
-      full_name:           data.deep_find('full_name'),
       is_private:          data.deep_find('is_private'),
       is_verified:         data.deep_find('is_verified'),
       requested_by_viewer: data.deep_find('requested_by_viewer'),
-      text:                data.deep_find('text')
+      text:                data.deep_find('text') 
     }
+
     unless @infinite_tags == true
       tags = @informations[:text].encode('UTF-8', invalid: :replace, undef: :replace, replace: '?').split(/\W+/)
-      id 	 = 0
+      id   = 0
       tags.each do |tag|
         if tag == '_' || tag == '' || tag.nil?
           tags.delete(tag)
@@ -58,7 +61,7 @@ module Grabber
     tags.each do |tag|
       puts '[+] '.cyan + "Searching in hashtag [##{tag}]"
       log("Searching in hashtags [##{tag}]", 'GRABBER')
-      url	        = "https://www.instagram.com/explore/tags/#{tag}/?__a=1"
+      url         = "https://www.instagram.com/explore/tags/#{tag}/?__a=1"
       response    = @agent.get(url)
       data        = parse_response(response.body)
       owners      = data.deep_find_all('owner')

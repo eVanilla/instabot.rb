@@ -27,49 +27,53 @@ here is the **manual** usage:
 
 ```ruby
 require 'instabot' 
-bot = Instabot.new :manual # => Available modes => :manual, :default => default mode is :default 
 
-bot.login("username","password") # => manual login
+bot = Instabot.new :manual
+bot.login("username","password")
 
-bot.follow(11111111) # user id
-bot.unfollow(11111111) # user id
-bot.like(1111111) # media id
-bot.unlike(1111111) # media id
-bot.comment(1111111, "comment text here") # media id
+bot.follow('user_id')
+bot.unfollow('user_id')
+bot.like('user_id')
+bot.unlike('user_id')
+bot.comment('user_id', 'comment text here')
 
-bot.logout() # => logout from current account
+bot.logout()
 ```
 
 and here is the **automatic** usage:
 
 ```ruby
-require 'instabot' 
+require 'instabot'
 
 Config.setup do |set|
-    set.username                = 'replace_your_username'
-    set.password                = 'replace_your_password'
-    set.tags                    = ["test","hello","birthday"]
-    set.wait_per_action         = 1 * 60 # => second
-    set.max_like_per_day        = 50
-    set.max_follow_per_day      = 50
-    set.max_unfollow_per_day    = 50
-    set.max_comment_per_day     = 50
-    set.infinite_tags           = true
-    set.print_banner            = true
-    set.pre_load                = false
-    set.comments                = [ 
-        ["this", "the", "your"],
-        ["photo", "picture", "pic", "shot", "snapshot"],
-        ["is", "looks", "feels", "is really"],
-        ["great", "super", "good", "very good", "good","wow", "WOW", "cool", "GREAT","magnificent","magical", "very cool", "stylish", "beautiful","so beautiful", "so stylish","so professional","lovely", "so lovely","very lovely", "glorious","so glorious","very glorious", "adorable", "excellent","amazing"], 
-        [".", "..", "...", "!","!!","!!!"]
-    ]
+  set.username             = 'username'
+  set.password             = 'password'
+  set.tags                 = %w[test hello birthday]
+  # set.use_proxy            = true # => it's important to enable the proxy usage
+  # set.proxy                = ["localhost",8888] # without username and password
+  # set.proxy                = ["localhost",8000,"USERNAME","PASSWORD"] # with username and password
+  set.wait_per_action      = 5 * 60
+  set.max_like_per_day     = 50
+  set.max_follow_per_day   = 50
+  set.max_unfollow_per_day = 50
+  set.max_comment_per_day  = 50
+  set.infinite_tags        = true
+  set.print_banner         = true
+  set.pre_load             = false
+  set.comments             = [
+    %w[this the your],
+    %w[photo picture pic shot snapshot],
+    %w[is looks feels is really],
+    %w[great super good very good good wow WOW cool GREAT magnificent magical very cool stylish beautiful so beautiful so stylish so professional lovely so lovely very lovely glorious so glorious very glorious adorable excellent amazing],
+    %w[. .. ... ! !! !!!]
+  ]
 end
 
-bot = Instabot.new # => Available modes => :manual, :default => default mode is :default 
-bot.mode(:infinite) # => Available modes => :infinite, :clean_up
+bot = Instabot.new
+bot.mode(:infinite) # => :cleanup, :infinite, ...
 ```
-> Note: be careful about using ```infinite_tags``` option
+> Note: Example files are [here](https://github.com/eVanilla/instabot.rb/tree/master/examples) 
+> and be careful about using ```infinite_tags``` option
 
 ## Using proxies
 
@@ -108,15 +112,15 @@ proxy | http(s) proxy details | write it on an array form like this ```["IP",POR
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/eVanilla/instabot.rb
 
-Also i have to say thank you for all you guys who contributed on this project
+Also i have to say thank you for all you guys who contributed to this project [Contributors](https://github.com/eVanilla/instabot.rb/graphs/contributors)
 
 and if you like it just... hit the star button to make me __(us)__ happy! (≖ᴗ≖✿)
  
 ## Used gems
 
 * Activesupport
-* Colorize
 * Mechanize
+* Colorize
 * hashie
 
 ## What's new in the future ?

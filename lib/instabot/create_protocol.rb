@@ -22,9 +22,9 @@ module Protocol
   end
 
   def set_mechanic_data(params = {})
-    @cookies 	 = Hash[@agent.cookies.map { |key, _value| [key.name, key.value] }]
-    @params 	  = params
-    @headers 	 = {
+    @cookies   = Hash[@agent.cookies.map { |key, _value| [key.name, key.value] }]
+    @params     = params
+    @headers   = {
       'Cookie'           => "mid=#{@cookies['mid']}; csrftoken=#{@cookies['csrftoken']}; sessionid=#{@cookies['sessionid']}; ds_user_id=#{@cookies['ds_user_id']}; rur=#{@cookies['rur']}; s_network=#{@cookies['s_network']}; ig_pr= 1; ig_vw=1920",
       'X-CSRFToken'      => (@cookies['csrftoken']).to_s,
       'X-Requested-With' => 'XMLHttpRequest',
