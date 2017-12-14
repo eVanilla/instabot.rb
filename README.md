@@ -14,7 +14,7 @@ Add this to your __Gemfile__:
 ```
 gem 'instabot'
 ```
-and make sure you run this ```bundle install``` command
+and make sure you run ```bundle install``` command
 
 or install for yourself
 ```
