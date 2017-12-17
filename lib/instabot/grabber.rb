@@ -1,7 +1,9 @@
+require 'active_support/core_ext/hash/indifferent_access'
+
 module Grabber
-  def handle_user_informations_data(user_id)
-    puts '[+] '.cyan + "Trying to get user (#{user_id}) informations"
-    log("Trying to get user (#{user_id}) informations", 'GRABBER')
+  def handle_user_information_data_by_user_id(user_id)
+    puts '[+] '.cyan + "Trying to get user (#{user_id}) information"
+    log("Trying to get user (#{user_id}) information", 'GRABBER')
     user_page = "https://www.instagram.com/web/friendships/#{user_id}/follow/"
     response  = get_page(user_page)
     last_page = response.uri.to_s
@@ -9,19 +11,28 @@ module Grabber
     response  = @agent.get("https://instagram.com/#{username}/?__a=1")
     data      = parse_response(response.body)
 
-    set_user_informations(data)
+    set_user_information(data)
   end
 
-  def handle_media_informations_data(media_id)
-    puts '[+] '.cyan + "Trying to get media (#{media_id}) informations"
-    log("Trying to get media (#{media_id}) informations", 'GRABBER')
+  def handle_user_information_data_by_user_name(username)
+    puts '[+] '.cyan + "Trying to get user (#{username}) information"
+    log("Trying to get user (#{username}) information", 'GRABBER')
+    response  = @agent.get("https://instagram.com/#{username}/?__a=1")
+    data      = parse_response(response.body)
+
+    set_user_information(data)
+  end
+
+  def handle_media_information_data(media_id)
+    puts '[+] '.cyan + "Trying to get media (#{media_id}) information"
+    log("Trying to get media (#{media_id}) information", 'GRABBER')
     response = @agent.get("https://www.instagram.com/p/#{media_id}/?__a=1")
     data     = parse_response(response.body)
 
-    set_media_informations(data)
+    set_media_information(data)
 
     unless @infinite_tags == true
-      tags = @media_informations[:text].encode('UTF-8', invalid: :replace, undef: :replace, replace: '?').split(/\W+/)
+      tags = @media_information[:text].encode('UTF-8', invalid: :replace, undef: :replace, replace: '?').split(/\W+/)
       id   = 0
       tags.each do |tag|
         if tag == '_' || tag == '' || tag.nil?
@@ -35,21 +46,22 @@ module Grabber
     end
   end
 
-  def set_user_informations(data)
-    @user_informations = {
+  def set_user_information(data)
+    @user_information = {
       followers:   data.deep_find('followed_by')['count'],
       following:   data.deep_find('follows')['count'],
       is_private:  data.deep_find('is_private'),
       is_verified: data.deep_find('is_verified'),
       username:    data.deep_find('username'),
-      posts:       data.deep_find('media')['count'],
+      media_count:       data.deep_find('media')['count'],
+      medias:       data.deep_find('media')['nodes'],
       full_name:   data.deep_find('full_name'),
       id:          data.deep_find('id')
-    }
+    }.with_indifferent_access
   end
 
-  def set_media_informations(data)
-    @media_informations = {
+  def set_media_information(data)
+    @media_information = {
       id:                  data.deep_find('id'),
       full_name:           data.deep_find('full_name'),
       owner:               data.deep_find('owner')['username'],
@@ -62,7 +74,7 @@ module Grabber
       is_verified:         data.deep_find('is_verified'),
       requested_by_viewer: data.deep_find('requested_by_viewer'),
       text:                data.deep_find('text') 
-    }
+    }.with_indifferent_access
   end
 
   def search(tags = [])
