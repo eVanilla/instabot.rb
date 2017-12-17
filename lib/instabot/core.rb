@@ -19,7 +19,7 @@ class Instabot
     include Log
     include Protocol
 
-    attr_accessor :users, :medias, :informations
+    attr_accessor :users, :medias, :media_informations, :user_informations
 
     def initialize(mode = :default)
         @login_mode    = mode 
