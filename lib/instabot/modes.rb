@@ -67,9 +67,9 @@ module Modes
     while @maximums[:follows_in_day] < @maximums[:max_follows_per_day]
       begin
         id += 1 if all_users[id].nil? || all_users[id] == []
-        get_user_informations(all_users[id])
+        handle_user_information_data_by_user_id(all_users[id])
         puts '[+] '.cyan + "Trying to follow user [#{all_users[id]}]"
-        follow(@informations[:id])
+        follow(@user_information[:id])
         puts '[+] '.cyan + 'User followed'.upcase.green.bold
         @maximums[:follows_in_day] += 1
         id                         += 1
@@ -113,9 +113,9 @@ module Modes
     id      = 0
     while @maximums[:likes_in_day] < @maximums[:max_likes_per_day]
       begin
-        get_media_informations(all_medias[id])
+        handle_media_information_data(all_medias[id])
         puts '[+] '.cyan + "Trying to like media [#{all_medias[id]}]"
-        like(@informations[:id])
+        like(@media_information[:id])
         puts '[+] '.cyan + 'Media liked'.upcase.green.bold
         @maximums[:likes_in_day] += 1
         id                       += 1
@@ -134,15 +134,15 @@ module Modes
     id      = 0
     while @maximums[:comments_in_day] < @maximums[:max_comments_per_day]
       begin
-        get_media_informations(all_medias[id])
-        if @informations[:comments_disabled]
+        handle_media_information_data(all_medias[id])
+        if @media_information[:comments_disabled]
           puts '[-]'.red + 'comments are disable' + "\t[IGNORING]".yellow
           id += 1 
           next
         end
         generated_comment = generate_a_comment
         puts '[+] '.cyan + "Trying to send a comment[#{generated_comment}] to media[#{all_medias[id]}]"
-        comment(@informations[:id], generated_comment)
+        comment(@media_information[:id], generated_comment)
         puts '[+] '.cyan + 'comment has been sent'.upcase.green.bold
         @maximums[:comments_in_day] += 1
         id                          += 1
