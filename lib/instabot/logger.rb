@@ -21,20 +21,23 @@ module Log
     end
   end
 
+
   def write_file(filename, text = '')
     File.open("#{@logs_dir}/#{filename}", 'a+') { |f| f.print "#{text.chomp}," }
   end
 
-  def log(text = '', from = '')
-    time = Time.new.strftime('%H:%M:%S %y-%m-%d')
-    if File.exists?(@logs_dir)
-      File.open("#{@logs_dir}/logs-#{@global_time}.log", 'a+') do |log_file|
-        log_file.puts "[#{@log_counter}] [#{time}] [#{from}] -- : #{text}"
+  def log(text = '', from = '', logs_status=options[:log_status])
+    if logs_status
+      time = Time.new.strftime('%H:%M:%S %y-%m-%d')
+      if File.exists?(@logs_dir)
+        File.open("#{@logs_dir}/logs-#{@global_time}.log", 'a+') do |log_file|
+          log_file.puts "[#{@log_counter}] [#{time}] [#{from}] -- : #{text}"
+        end
+      else
+        Dir.mkdir(@logs_dir)
       end
-    else
-      Dir.mkdir(@logs_dir)
+      @log_counter += 1
     end
-    @log_counter += 1
   end
 
   def save_action_log(id = 0, type = :default)

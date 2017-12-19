@@ -16,7 +16,7 @@ gem 'instabot'
 ```
 and make sure you run ```bundle install``` command
 
-or install for yourself
+or install it yourself as:
 ```
 $ gem install instabot --no-ri --no-rdoc
 ```
@@ -57,6 +57,7 @@ Config.setup do |set|
   set.max_follow_per_day   = 50
   set.max_unfollow_per_day = 50
   set.max_comment_per_day  = 50
+  set.log_status           = true
   set.infinite_tags        = true
   set.print_banner         = true
   set.pre_load             = false
@@ -87,10 +88,11 @@ set.proxy                     = ["localhost",8000,"USERNAME","PASSWORD"] # with 
 
 set | description | value __(example)__
 ------------ | ------------- | -------------
-username | this is your IG username | ```replace_your_username```
-password | this is your IG password | ```replace_your_password```
+username | this is your IG username | ```your_ig_username```
+password | this is your IG password | ```your_ig_password```
 tags | This script use tags for searching medias | write whatever you want like this ```["hello_world", "test"]``` in an **array** form
 wait_per_action | if you want to use automatic mode so then you have to use this, because you will be banned from IG | ```1 * 60```
+log_status | printing logs in the file | ```true``` or ```false```
 max_like_per_day | this is the max likes per day limitation | ```100```
 max_follow_per_day | this is the max follows per day limitation | ```100```
 max_unfollow_per_day | this is the max unfollows per day limitation | ```100```

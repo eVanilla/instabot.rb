@@ -81,6 +81,7 @@ module Grabber
   end
 
   def search(tags = [])
+    used_tags = []
     tags.each do |tag|
       puts '[+] '.cyan + "Searching in hashtag [##{tag}]"
       log("Searching in hashtags [##{tag}]", 'GRABBER')
@@ -91,8 +92,9 @@ module Grabber
       media_codes = data.deep_find_all('code')
       owners.map { |id| users << id['id'] }
       media_codes.map { |code| medias << code }
-      Config.options.tags.delete(tag)
+      used_tags << tag
     end
+    Config.options.tags = Config.options.tags - used_tags
     puts '[+] '.cyan + 'Total grabbed users [' + users.size.to_s.yellow + ']'
     puts '[+] '.cyan + 'Total grabbed medias [' + medias.size.to_s.yellow + ']'
     log("Total grabbed users(#{users.size}) & Total grabbed medias(#{medias.size})", 'GRABBER')

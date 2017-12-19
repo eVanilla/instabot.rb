@@ -1,4 +1,3 @@
-
 # automatic module and helpers
 module Modes
   # main def and mode selector

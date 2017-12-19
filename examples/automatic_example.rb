@@ -1,20 +1,20 @@
 require 'instabot'
 
 Config.setup do |set|
-  set.username             = 'username'
-  set.password             = 'password'
-  set.tags                 = %w[test hello birthday]
+  set.username             = 'YOUR_USERNAME'
+  set.password             = 'YOUR_PASSWORD'
+  set.tags                 = ['test','car','sky','blue','music']
   # set.use_proxy            = true # => it's important to enable the proxy usage
   # set.proxy                = ["localhost",8888] # without username and password
   # set.proxy                = ["localhost",8000,"USERNAME","PASSWORD"] # with username and password
-  set.wait_per_action      = 5# * 60
+  set.wait_per_action      = 30
  
-  set.max_like_per_day     = 2
-  set.max_follow_per_day   = 2
-  set.max_unfollow_per_day = 2
-  set.max_comment_per_day  = 1
+  set.max_follow_per_day   = 500
+  set.max_unfollow_per_day = 400
+  set.max_like_per_day     = 400
+  set.max_comment_per_day  = 20
 
-
+  set.log_status           = true
   set.infinite_tags        = true
   set.print_banner         = true
   set.pre_load             = false

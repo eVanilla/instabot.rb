@@ -13,24 +13,25 @@ module Config
         attr_accessor   :username, :password, :tags, :use_proxy, :proxy, :comments,
                         :print_banner, :pre_load, :wait_per_action, :infinite_tags,
                         :max_like_per_day, :max_follow_per_day, :max_unfollow_per_day,
-                        :max_comment_per_day, :unwanted_list, :white_list_users
+                        :max_comment_per_day, :unwanted_list, :white_list_users,:log_status
         def initialize
-            @infinite_tags        = true
+            @wait_per_action      = 1 * 60
             @max_comment_per_day  = 50
             @max_follow_per_day   = 50
             @max_like_per_day     = 50
             @max_unfollow_per_day = 50
             @username             = nil
             @password             = nil
+            @proxy                = nil
+            @username             = nil
+            @infinite_tags        = true
             @pre_load             = true
             @print_banner         = true
-            @proxy                = nil
-            @tags                 = %w[test hello hello_world birthday food]
-            @unwanted_list        = nil
+            @log_status           = true
             @use_proxy            = false
-            @username             = nil
-            @wait_per_action      = 1 * 60
-            @white_list_users     = nil
+            @tags                 = []
+            @unwanted_list        = []
+            @white_list_users     = []
             @comments             = [
                 %w[this the your],
                 %w[photo picture pic shot snapshot],

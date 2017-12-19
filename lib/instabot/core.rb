@@ -74,7 +74,8 @@ class Instabot
                 unwanted_list:        Config.options.unwanted_list,
                 use_proxy:            Config.options.use_proxy,
                 wait_per_action:      Config.options.wait_per_action,
-                white_list_users:     Config.options.white_list_users
+                white_list_users:     Config.options.white_list_users,
+                log_status:           Config.options.log_status
             }
         else
             {

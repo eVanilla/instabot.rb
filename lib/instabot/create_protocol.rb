@@ -2,7 +2,7 @@ module Protocol
   def create_mechanic
     @agent                  = Mechanize.new
     @agent.max_history      = 2
-    @agent.ca_file          = './cacert.pem' # Because i'm using windows and... you know... ._.
+    # @agent.ca_file          = './cacert.pem' # Because i use windows and... you know... ._.
     @agent.user_agent_alias = ['Mac Mozilla', 'Mac Safari', 'Windows IE 6', 'Windows IE 7', 'Windows IE 8', 'Windows IE 9', 'Windows Mozilla', 'Windows Chrome'].sample
     if options[:use_proxy]
       proxy = options[:proxy]
