@@ -50,6 +50,9 @@ module Grabber
     @user_information = {
       followers:   data.deep_find('followed_by')['count'],
       following:   data.deep_find('follows')['count'],
+      follows_viewer: data.deep_find('follows_viewer'),
+      followed_by_viewer: data.deep_find('followed_by_viewer'),
+      requested_by_viewer: data.deep_find('requested_by_viewer'),
       is_private:  data.deep_find('is_private'),
       is_verified: data.deep_find('is_verified'),
       username:    data.deep_find('username'),
