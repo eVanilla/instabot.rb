@@ -7,6 +7,7 @@ gem 'colorize'
 gem 'hashie'
 gem 'instabot'
 gem 'mechanize'
+gem 'net/telnet'
 # end
 
 group :development do
