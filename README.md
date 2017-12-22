@@ -87,7 +87,7 @@ set.use_proxy                 = true # => it's so important to enable the proxy 
 set.proxy                     = ["localhost",8888] # without username and password
 set.proxy                     = ["localhost",8000,"USERNAME","PASSWORD"] # with username and password
 ``` 
-*don't have money to buy a proxy? no problem! continue reading*
+**don't have money to buy a proxy? no problem! continue reading**
 
 ## Using tor
 
