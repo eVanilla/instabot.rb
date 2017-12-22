@@ -13,7 +13,8 @@ module Config
         attr_accessor   :username, :password, :tags, :use_proxy, :proxy, :comments,
                         :print_banner, :pre_load, :wait_per_action, :infinite_tags,
                         :max_like_per_day, :max_follow_per_day, :max_unfollow_per_day,
-                        :max_comment_per_day, :unwanted_list, :white_list_users,:log_status
+                        :max_comment_per_day, :unwanted_list, :white_list_users,
+                        :log_status, :use_tor
         def initialize
             @wait_per_action      = 1 * 60
             @max_comment_per_day  = 50
@@ -29,6 +30,7 @@ module Config
             @print_banner         = true
             @log_status           = true
             @use_proxy            = false
+            @use_tor              = false
             @tags                 = []
             @unwanted_list        = []
             @white_list_users     = []

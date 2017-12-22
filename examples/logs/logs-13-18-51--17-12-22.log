@@ -1,0 +1,17 @@
+[0] [13:18:51 17-12-22] [LOGGER] -- : checking log files
+[1] [13:18:51 17-12-22] [CORE] -- : log files are checked
+[2] [13:18:51 17-12-22] [CORE] -- : Machine started
+[3] [13:18:58 17-12-22] [CREATE_PROTOCOL] -- : Protocol successfully created
+[4] [13:18:58 17-12-22] [CORE] -- : Processing successfully completed
+[5] [13:18:59 17-12-22] [LOGIN] -- : trying to login
+[6] [13:19:12 17-12-22] [LOGIN] -- : successfully logged in
+[7] [13:19:12 17-12-22] [MODES] -- : [Auto] mode is turned on
+[8] [13:19:12 17-12-22] [GRABBER] -- : Searching in hashtags [#test]
+[9] [13:19:16 17-12-22] [GRABBER] -- : Searching in hashtags [#car]
+[10] [13:19:18 17-12-22] [GRABBER] -- : Searching in hashtags [#sky]
+[11] [13:19:21 17-12-22] [GRABBER] -- : Searching in hashtags [#blue]
+[12] [13:19:24 17-12-22] [GRABBER] -- : Searching in hashtags [#music]
+[13] [13:19:27 17-12-22] [GRABBER] -- : Total grabbed users(622) & Total grabbed medias(311)
+[14] [13:19:27 17-12-22] [GRABBER] -- : Trying to get user (300701935) information
+[15] [13:19:35 17-12-22] [ACTIONS] -- : trying to follow a user [300701935]
+[16] [13:19:35 17-12-22] [LOGIN] -- : checking loging status

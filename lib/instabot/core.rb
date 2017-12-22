@@ -3,7 +3,7 @@
 #   @Authors       eVanilla + https://github.com/eVanilla/instabot.rb/graphs/contributors
 # 
 
-%w[colorize mechanize io/console hashie json logger pp active_support/core_ext/numeric/time rbconfig].each { |gem| require gem }
+%w[colorize mechanize io/console hashie json logger pp active_support/core_ext/numeric/time rbconfig net/telnet socksify socksify/http].each { |gem| require gem }
 
 # main core class
 class Instabot
@@ -18,6 +18,7 @@ class Instabot
     include Login
     include Log
     include Protocol
+    include TorProtocol
 
     attr_accessor :users, :medias, :media_information, :user_information
 
@@ -73,6 +74,7 @@ class Instabot
                 tags:                 Config.options.tags,
                 unwanted_list:        Config.options.unwanted_list,
                 use_proxy:            Config.options.use_proxy,
+                use_tor:              Config.options.use_tor,
                 wait_per_action:      Config.options.wait_per_action,
                 white_list_users:     Config.options.white_list_users,
                 log_status:           Config.options.log_status
@@ -94,7 +96,7 @@ class Instabot
         check_log_files
         log('log files are checked', 'CORE')
         log('Machine started', 'CORE')
-        create_mechanic
+        create_protocol
         puts '[+] '.cyan + 'Processing successfully completed'
         log('Processing successfully completed', 'CORE')
         unless mode != :default

@@ -49,9 +49,13 @@ Config.setup do |set|
   set.username             = 'username'
   set.password             = 'password'
   set.tags                 = %w[test hello birthday]
+  
   # set.use_proxy            = true # => it's important to enable the proxy usage
   # set.proxy                = ["localhost",8888] # without username and password
   # set.proxy                = ["localhost",8000,"USERNAME","PASSWORD"] # with username and password
+  
+  # set.use_tor              = true # default is false
+
   set.wait_per_action      = 5 * 60
   set.max_like_per_day     = 50
   set.max_follow_per_day   = 50
@@ -83,6 +87,14 @@ set.use_proxy                 = true # => it's so important to enable the proxy 
 set.proxy                     = ["localhost",8888] # without username and password
 set.proxy                     = ["localhost",8000,"USERNAME","PASSWORD"] # with username and password
 ``` 
+*don't have money to buy a proxy? no problem! continue reading*
+
+## Using tor
+
+first of all you have to download the latest **tor expert bundle** from [here](https://www.torproject.org/download/download.html.en)
+
+then navigate to the **Tor** folder and run the ```tor --controlport 9051``` also don't forget to enable using tor by ```set.use_tor = true``` option, and that's it! we're done
+
 
 ## Configuration description: 
 
@@ -101,6 +113,7 @@ infinite_tags | grab new tags by medias __(infinite tag grabber)__ | ```ture``` 
 print_banner | enable or disable banner | ```true``` or ```false```
 comments | the comments you want to post in medias | just change the values in example
 pre_load | load pre configurations in **logs** folder | ```followed_users.txt```, ```unfollowed_users.txt```, ```liked_medias.txt```, ```commented_medias.txt```
+use_tor | enabling and disabling the tor usage | ```true``` or ```false```
 use_proxy | enabling and disabling the proxy usage | ```true``` or ```false```
 proxy | http(s) proxy details | write it on an array form like this ```["IP",PORT]``` or if it has username and password you have to use this format ```["IP",PORT,"USERNAME","PASSWORD"]``` 
 
@@ -114,7 +127,7 @@ proxy | http(s) proxy details | write it on an array form like this ```["IP",POR
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/eVanilla/instabot.rb
 
-Also i have to say thank you for all you guys who contributed to this project [Contributors](https://github.com/eVanilla/instabot.rb/graphs/contributors)
+Also thank you guys! [Contributors](https://github.com/eVanilla/instabot.rb/graphs/contributors)
 
 and if you like it just... hit the star button to make me __(us)__ happy! (≖ᴗ≖✿)
  

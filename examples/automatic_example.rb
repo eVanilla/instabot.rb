@@ -1,23 +1,30 @@
+# lib = File.expand_path('../../lib', __FILE__)
+# $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'instabot'
 
 Config.setup do |set|
-  set.username             = 'YOUR_USERNAME'
-  set.password             = 'YOUR_PASSWORD'
-  set.tags                 = ['test','car','sky','blue','music']
+  set.username              = 'REPLACE_YOUR_USERNAME'
+  set.password              = 'REPLACE_YOUR_PASSWORD'
+  set.tags                  = ['test','car','sky','blue','music']
+  
   # set.use_proxy            = true # => it's important to enable the proxy usage
   # set.proxy                = ["localhost",8888] # without username and password
   # set.proxy                = ["localhost",8000,"USERNAME","PASSWORD"] # with username and password
-  set.wait_per_action      = 30
- 
-  set.max_follow_per_day   = 500
-  set.max_unfollow_per_day = 400
-  set.max_like_per_day     = 400
-  set.max_comment_per_day  = 20
 
-  set.log_status           = true
-  set.infinite_tags        = true
-  set.print_banner         = true
-  set.pre_load             = false
+  # set.use_tor               = true # default is false
+  # set.change_ip_per_actions = # => under construction ...
+
+
+  set.wait_per_action       = 30
+  set.max_follow_per_day    = 500
+  set.max_unfollow_per_day  = 400
+  set.max_like_per_day      = 400
+  set.max_comment_per_day   = 20
+
+  set.log_status            = true
+  set.infinite_tags         = true
+  set.print_banner          = true
+  set.pre_load              = false
   # set.unwanted_list        = ["_id","free_","free"] # => under construction...
   # set.white_list_users     = ["john","alex","nick"] # => under construction...
   set.comments             = [

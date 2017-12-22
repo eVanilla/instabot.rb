@@ -1,5 +1,8 @@
 module Protocol
-  def create_mechanic
+  def create_protocol
+    if options[:use_tor]
+      @tor = TorProtocol::Tor.new
+    end
     @agent                  = Mechanize.new
     @agent.max_history      = 2
     # @agent.ca_file          = './cacert.pem' # Because i use windows and... you know... ._.
@@ -11,6 +14,11 @@ module Protocol
       else
         @agent.set_proxy(proxy[0], proxy[1].to_i, proxy[2], proxy[3])
       end
+    end
+    
+    if options[:use_tor]
+      @agent.agent.set_socks('localhost', 9050)
+      log('tor has been started', 'CREATE_PROTOCOL')
     end
 
     puts 'PROCESSING: '.cyan.bold + 'protocol created'

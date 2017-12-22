@@ -1,4 +1,5 @@
 require_relative 'instabot/create_protocol'
+require_relative 'instabot/tor_protocol'
 require_relative 'instabot/version'
 require_relative 'instabot/actions'
 require_relative 'instabot/grabber'
