@@ -1,6 +1,0 @@
-[0] [12:55:42 17-12-22] [LOGGER] -- : checking log files
-[1] [12:55:42 17-12-22] [CORE] -- : log files are checked
-[2] [12:55:42 17-12-22] [CORE] -- : Machine started
-[3] [12:55:43 17-12-22] [CREATE_PROTOCOL] -- : Protocol successfully created
-[4] [12:55:43 17-12-22] [CORE] -- : Processing successfully completed
-[5] [12:55:43 17-12-22] [LOGIN] -- : trying to login

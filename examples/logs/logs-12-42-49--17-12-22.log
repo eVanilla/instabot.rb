@@ -1,9 +1,0 @@
-[0] [12:42:49 17-12-22] [LOGGER] -- : checking log files
-[1] [12:42:49 17-12-22] [CORE] -- : log files are checked
-[2] [12:42:49 17-12-22] [CORE] -- : Machine started
-[3] [12:42:49 17-12-22] [CREATE_PROTOCOL] -- : Protocol successfully created
-[4] [12:42:49 17-12-22] [CORE] -- : Processing successfully completed
-[5] [12:42:49 17-12-22] [LOGIN] -- : trying to login
-[6] [12:43:01 17-12-22] [LOGIN] -- : successfully logged in
-[7] [12:43:01 17-12-22] [MODES] -- : [Auto] mode is turned on
-[8] [12:43:01 17-12-22] [GRABBER] -- : Searching in hashtags [#test]
