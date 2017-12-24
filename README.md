@@ -63,8 +63,13 @@ Config.setup do |set|
   set.max_comment_per_day  = 50
   set.log_status           = true
   set.infinite_tags        = true
+  set.add_tag_per_post     = 5
   set.print_banner         = true
   set.pre_load             = false
+
+  set.unwanted_list        = ["_id","free_","free"]
+  set.white_list_users     = ["john","alex","nick"]
+
   set.comments             = [
     %w[this the your],
     %w[photo picture pic shot snapshot],
@@ -89,11 +94,14 @@ set.proxy                     = ["localhost",8000,"USERNAME","PASSWORD"] # with 
 ``` 
 **don't have money to buy a proxy? no problem! continue reading**
 
+
 ## Using tor
 
-first of all you have to download the latest **tor expert bundle** from [here](https://www.torproject.org/download/download.html.en)
+first of all you have to download the latest ```tor expert bundle``` from [here](https://www.torproject.org/download/download.html.en)
 
-then navigate to the **Tor** folder and run the ```tor --controlport 9051``` also don't forget to enable using tor by ```set.use_tor = true``` option, and that's it! we're done
+then navigate to the ```Tor``` folder and run the ```tor --controlport 9051``` 
+
+also don't forget to enable using tor by ```set.use_tor = true``` option, and that's it! we're done
 
 
 ## Configuration description: 
@@ -102,23 +110,25 @@ set | description | value __(example)__
 ------------ | ------------- | -------------
 username | this is your IG username | ```your_ig_username```
 password | this is your IG password | ```your_ig_password```
-tags | This script use tags for searching medias | write whatever you want like this ```["hello_world", "test"]``` in an **array** form
-wait_per_action | if you want to use automatic mode so then you have to use this, because you will be banned from IG | ```1 * 60```
+tags | This script use tags for searching medias & users | write whatever you want like this ```["hello_world", "test"]``` in an **array**
+wait_per_action | wait time per actions  | ```1 * 60```
 log_status | printing logs in the file | ```true``` or ```false```
+unwanted_list | unwanted names in usernames | ```["_id","free_","free"]```
+white_list_users | white list usernames | ```["john","alex","nick"]```
 max_like_per_day | this is the max likes per day limitation | ```100```
 max_follow_per_day | this is the max follows per day limitation | ```100```
 max_unfollow_per_day | this is the max unfollows per day limitation | ```100```
 max_comment_per_day | this is the max comments per day limitation | ```100```
 infinite_tags | grab new tags by medias __(infinite tag grabber)__ | ```ture``` or ```false```
+add_tag_per_post | an limit for ```infinite_tags```  | ```5``` , default is ```1```
 print_banner | enable or disable banner | ```true``` or ```false```
 comments | the comments you want to post in medias | just change the values in example
 pre_load | load pre configurations in **logs** folder | ```followed_users.txt```, ```unfollowed_users.txt```, ```liked_medias.txt```, ```commented_medias.txt```
 use_tor | enabling and disabling the tor usage | ```true``` or ```false```
 use_proxy | enabling and disabling the proxy usage | ```true``` or ```false```
-proxy | http(s) proxy details | write it on an array form like this ```["IP",PORT]``` or if it has username and password you have to use this format ```["IP",PORT,"USERNAME","PASSWORD"]``` 
+proxy | http(s) proxy details | write it in an array like this ```["IP",PORT]``` or if it has username and password you have to use this format ```["IP",PORT,"USERNAME","PASSWORD"]``` 
 
 **Development description:**
-
 > Methods are available on rubydoc.
 
 
@@ -137,6 +147,8 @@ and if you like it just... hit the star button to make me __(us)__ happy! (â‰–á´
 * Mechanize
 * Colorize
 * hashie
+* socksify
+* net-telnet
 
 ## What's new in the future ?
 

@@ -30,7 +30,7 @@ module Log
     if logs_status
       time = Time.new.strftime('%H:%M:%S %y-%m-%d')
       if File.exists?(@logs_dir)
-        File.open("#{@logs_dir}/logs-#{@global_time}.log", 'a+') do |log_file|
+        File.open("#{@logs_dir}/logs-#{@started_time}.log", 'a+') do |log_file|
           log_file.puts "[#{@log_counter}] [#{time}] [#{from}] -- : #{text}"
         end
       else

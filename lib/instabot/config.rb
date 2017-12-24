@@ -14,7 +14,9 @@ module Config
                         :print_banner, :pre_load, :wait_per_action, :infinite_tags,
                         :max_like_per_day, :max_follow_per_day, :max_unfollow_per_day,
                         :max_comment_per_day, :unwanted_list, :white_list_users,
-                        :log_status, :use_tor
+                        :log_status, :use_tor, :add_tag_per_post, :unwanted_list,
+                        :white_list_users
+
         def initialize
             @wait_per_action      = 1 * 60
             @max_comment_per_day  = 50
@@ -31,9 +33,11 @@ module Config
             @log_status           = true
             @use_proxy            = false
             @use_tor              = false
+            @add_tag_per_post     = 1
             @tags                 = []
             @unwanted_list        = []
             @white_list_users     = []
+            
             @comments             = [
                 %w[this the your],
                 %w[photo picture pic shot snapshot],

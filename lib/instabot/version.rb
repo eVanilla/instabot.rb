@@ -1,5 +1,5 @@
 module Version
-  VERSION     = '0.1.75'.freeze
+  VERSION     = '0.1.80'.freeze
   SUMMARY     = 'Ruby instagram bot'.freeze
   DESCRIPTION = 'An instagram bot works without instagram api, only needs your username and password'.freeze
 end

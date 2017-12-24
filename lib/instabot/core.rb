@@ -23,16 +23,18 @@ class Instabot
     attr_accessor :users, :medias, :media_information, :user_information
 
     def initialize(mode = :default)
-        @login_mode    = mode 
-        @users         = []
-        @medias        = []
-        @log_counter   = 0
-        @login_counter = 1
-        @login_status  = false
-        @lib_dir       = "#{Dir.pwd}/lib"
-        @root_dir      = Dir.pwd.to_s
-        @logs_dir      = "#@root_dir/logs"
-        @global_time   = Time.new.strftime('%H-%M-%S--%y-%m-%d')
+        @login_mode       = mode 
+        @users            = []
+        @medias           = []
+        @log_counter      = 0
+        @login_counter    = 1
+        @login_status     = false
+        @lib_dir          = "#{Dir.pwd}/lib"
+        @root_dir         = Dir.pwd.to_s
+        @logs_dir         = "#@root_dir/logs"
+        @started_time     = Time.new.strftime('%H-%M-%S--%y-%m-%d')
+        @errors_iteration = 0 
+
         Configuration.new if @login_mode == :manual
 
         @local_stroage = {
@@ -72,12 +74,13 @@ class Instabot
                 print_banner:         Config.options.print_banner,
                 proxy:                Config.options.proxy,
                 tags:                 Config.options.tags,
-                unwanted_list:        Config.options.unwanted_list,
                 use_proxy:            Config.options.use_proxy,
                 use_tor:              Config.options.use_tor,
                 wait_per_action:      Config.options.wait_per_action,
+                log_status:           Config.options.log_status,
+                add_tag_per_post:     Config.options.add_tag_per_post,
+                unwanted_list:        Config.options.unwanted_list,
                 white_list_users:     Config.options.white_list_users,
-                log_status:           Config.options.log_status
             }
         else
             {
@@ -89,7 +92,6 @@ class Instabot
         end
     end
 
-    # bot starter
     def intro(mode)
         trap('INT') { exit! }
         print_banner

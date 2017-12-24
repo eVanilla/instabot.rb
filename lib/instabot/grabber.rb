@@ -35,11 +35,13 @@ module Grabber
       tags = @media_information[:text].encode('UTF-8', invalid: :replace, undef: :replace, replace: '?').split(/\W+/)
       id   = 0
       tags.each do |tag|
-        if tag == '_' || tag == '' || tag.nil?
-          tags.delete(tag)
-        else
-          id += 1
-          Config.options.tags << tag
+        if id < options[:add_tag_per_post]
+          if tag == '_' || tag == '' || tag.nil? || tag.include?('?')
+            tags.delete(tag)
+          else
+            id += 1
+            Config.options.tags << tag
+          end
         end
       end
       puts '[+] '.cyan + '[' + id.to_s.yellow + '] New tags added'
