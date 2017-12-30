@@ -1,4 +1,4 @@
-![https://github.com/eVanilla/instabot.rb](https://github.com/eVanilla/instabot.rb/blob/master/banner.png)
+![https://github.com/eVanilla/instabot.rb](./banner.png)
 
 # instabot.rb
 
