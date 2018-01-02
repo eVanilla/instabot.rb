@@ -1,4 +1,4 @@
-<div style="text-align:center"><img src ="./banner.png" /></div>
+<p align="center"><img src="./banner.png"></p>
 
 # instabot.rb
 
