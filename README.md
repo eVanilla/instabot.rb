@@ -1,4 +1,4 @@
-![https://github.com/eVanilla/instabot.rb](./banner.png)
+<div style="text-align:center"><img src ="./banner.png" /></div>
 
 # instabot.rb
 
