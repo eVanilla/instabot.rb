@@ -1,8 +1,8 @@
-<p align="center"><img src="./banner.png"></p>
+<img src="./banner.png">
 
 # instabot.rb
 
-An instagram bot works without instagram api, only needs your username and password.
+An ruby instagram bot and scrapper works without instagram api, only needs your username and password.
 
 ![https://rubygems.org/gems/instabot](https://img.shields.io/gem/dt/instabot.svg?label=DOWNLOADS&style=for-the-badge) 
 ![https://rubygems.org/gems/instabot](https://img.shields.io/gem/v/instabot.svg?label=GEM&style=for-the-badge)
