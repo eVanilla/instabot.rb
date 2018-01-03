@@ -91,7 +91,7 @@ module Grabber
       response    = @agent.get(url)
       data        = parse_response(response.body)
       owners      = data.deep_find_all('owner')
-      media_codes = data.deep_find_all('code')
+      media_codes = data.deep_find_all('shortcode')
       owners.map { |id| users << id['id'] }
       media_codes.map { |code| medias << code }
       used_tags << tag
