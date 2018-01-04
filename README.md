@@ -14,9 +14,12 @@ Add this to your __Gemfile__:
 ```
 gem 'instabot'
 ```
-and make sure you run ```bundle install``` command
+and then execute
+```
+$ bundle install
+```
 
-or install it yourself as:
+or install it yourself as
 ```
 $ gem install instabot --no-ri --no-rdoc
 ```
