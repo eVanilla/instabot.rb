@@ -23,7 +23,7 @@ $ gem install instabot --no-ri --no-rdoc
 
 ## Usage
 
-here is the **manual** usage:
+here is the **basic** usage:
 
 ```ruby
 require 'instabot' 
