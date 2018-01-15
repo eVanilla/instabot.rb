@@ -19,7 +19,7 @@ and then execute
 $ bundle install
 ```
 
-or install it yourself as
+or install it yourself as:
 ```
 $ gem install instabot --no-ri --no-rdoc
 ```
@@ -149,9 +149,9 @@ and if you like it just... hit the star button to make me __(us)__ happy! (â‰–á´
 * Activesupport
 * Mechanize
 * Colorize
-* hashie
-* socksify
-* net-telnet
+* Hashie
+* Socksify
+* Net-telnet
 
 ## What's new in the future ?
 
