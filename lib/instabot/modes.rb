@@ -51,32 +51,30 @@ module Modes
 
   def auto_follow
     all_users    = @users
-    id           = 0
+    search(options[:tags]) if all_users == [] || all_users.nil?
+    @follows_auto_increment           = 0
     puts '[+] '.cyan + "[follow] ".upcase.yellow.bold + "#{all_users.size} user is ready".upcase
     while @maximums[:follows_in_day] < @maximums[:max_follows_per_day]
       begin
-        id += 1 if all_users[id].nil? || all_users[id] == []
-        handle_user_information_data_by_user_id(all_users[id])
+        @users -= all_users[@follows_auto_increment] if all_users[@follows_auto_increment].nil? || all_users[@follows_auto_increment] == []
+        handle_user_information_data_by_user_id(all_users[@follows_auto_increment])
         if !is_user_valid?(@user_information[:full_name])
-          puts '[+] '.cyan + "Trying to follow user [#{all_users[id]}]"
+          puts '[+] '.cyan + "Trying to follow user [#{all_users[@follows_auto_increment]}]"
           follow(@user_information[:id])
-          @users -= [all_users[id]]
+          @users -= [all_users[@follows_auto_increment]]
           puts '[+] '.cyan + 'User followed'.upcase.green.bold
           @maximums[:follows_in_day] += 1
-          id                         += 1
+          @follows_auto_increment += 1
           fall_in_asleep
         else
           puts "unwanted user(#{@user_information[:full_name]}) [ignored]".yellow
-          id += 1
+          @follows_auto_increment += 1
         end
         break
       rescue Exception => e
         puts "An error occured ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\n[ignored]"
-          # exit! if @errors_iteration > 3
-          # id                += 1
-          # @errors_iteration += 1
-          # retry
-          break
+        @follows_auto_increment += 1
+        break
         retry
       end
     end
@@ -85,25 +83,22 @@ module Modes
   def auto_unfollow
     followed_users = @local_stroage[:followed_users]
     puts '[+] '.cyan + "[unfollow] ".upcase.yellow.bold + "#{followed_users.size} user is ready".upcase
-    id = 0
+    @unfollows_auto_increment = 0
     while @maximums[:unfollows_in_day] < @maximums[:max_unfollows_per_day]
       if @local_stroage[:followed_users].size < @maximums[:max_unfollows_per_day]
         if !followed_users.empty?
           begin
-            puts '[+] '.cyan + "Trying to unfollow user [#{followed_users[id]}]"
-            unfollow(followed_users[id])
-            @local_stroage[:followed_users] -= [followed_users[id]]
+            puts '[+] '.cyan + "Trying to unfollow user [#{followed_users[@unfollows_auto_increment]}]"
+            unfollow(followed_users[@unfollows_auto_increment])
+            @local_stroage[:followed_users] -= [followed_users[@unfollows_auto_increment]]
             puts '[+] '.cyan + 'User unfollowed'.upcase.bold.green
             @maximums[:unfollows_in_day] += 1
-            id                           += 1
+            @unfollows_auto_increment += 1
             fall_in_asleep
             break
           rescue Exception => e
             puts "An error occured ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\n[ignored]"
-            # exit! if @errors_iteration > 3
-            # id                += 1
-            # @errors_iteration += 1
-            # retry
+            @unfollows_auto_increment += 1
             break
           end
         else 
@@ -118,58 +113,52 @@ module Modes
 
   def auto_like
     all_medias  = @medias
+    search(options[:tags]) if all_medias == [] || all_medias.nil?
     puts '[+] '.cyan + "[like] ".upcase.yellow.bold + "#{all_medias.size} Media is ready".upcase
-    id      = 0
     while @maximums[:likes_in_day] < @maximums[:max_likes_per_day]
       begin
-        handle_media_information_data(all_medias[id])
-        puts '[+] '.cyan + "Trying to like media [#{all_medias[id]}]"
+        @medias -= [all_medias[@likes_auto_increment]] if all_medias[@likes_auto_increment].nil? || all_medias[@likes_auto_increment] == []
+        handle_media_information_data(all_medias[@likes_auto_increment])
+        puts '[+] '.cyan + "Trying to like media [#{all_medias[@likes_auto_increment]}]"
         like(@media_information[:id])
-        @medias -= [all_medias[id]]
+        @medias -= [all_medias[@likes_auto_increment]]
         puts '[+] '.cyan + 'Media liked'.upcase.green.bold
         @maximums[:likes_in_day] += 1
-        id                       += 1
         fall_in_asleep
         break
       rescue Exception => e
         puts "An error occured ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\n[ignored]"
-          # exit! if @errors_iteration > 3
-          # id                += 1
-          # @errors_iteration += 1
-          # retry
-          break
+        @medias -= [all_medias[@likes_auto_increment]]
+        break
       end
     end
   end
 
   def auto_comment
     all_medias  = @medias
+    search(options[:tags]) if all_medias == [] || all_medias.nil?
     puts '[+] '.cyan + "[comment] ".upcase.yellow.bold + "#{all_medias.size} Media is ready".upcase
-    id      = 0
+    @comments_auto_increment      = 0
     while @maximums[:comments_in_day] < @maximums[:max_comments_per_day]
       begin
-        handle_media_information_data(all_medias[id])
+        @medias -= [all_medias[@comments_auto_increment]] if all_medias[@comments_auto_increment].nil? || all_medias[@comments_auto_increment] == []
+        handle_media_information_data(all_medias[@comments_auto_increment])
         if @media_information[:comments_disabled]
           puts '[-]'.cyan + 'comments are disable' + "\t[ignored]".yellow
-          id += 1 
-          # next
+          @comments_auto_increment += 1 
         end
         generated_comment = generate_a_comment
-        puts '[+] '.cyan + "Trying to send a comment[#{generated_comment}] to media[#{all_medias[id]}]"
+        puts '[+] '.cyan + "Trying to send a comment[#{generated_comment}] to media[#{all_medias[@comments_auto_increment]}]"
         comment(@media_information[:id], generated_comment)
-        @medias -= [all_medias[id]]
+        @medias -= [all_medias[@comments_auto_increment]]
         puts '[+] '.cyan + 'comment has been sent'.upcase.green.bold
         @maximums[:comments_in_day] += 1
-        id                          += 1
         fall_in_asleep
         break
       rescue Exception => e
         puts "An error occured ... #{e.class} #{e.message}\n#{e.backtrace.inspect}\n[ignored]"
-          # exit! if @errors_iteration > 3
-          # id                += 1
-          # @errors_iteration += 1
-          # retry
-          break
+        @comments_auto_increment += 1
+        break
       end
     end
   end

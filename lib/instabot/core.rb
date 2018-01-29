@@ -23,17 +23,22 @@ class Instabot
     attr_accessor :users, :medias, :media_information, :user_information
 
     def initialize(mode = :default)
-        @login_mode       = mode 
-        @users            = []
-        @medias           = []
-        @log_counter      = 0
-        @login_counter    = 1
-        @login_status     = false
-        @lib_dir          = "#{Dir.pwd}/lib"
-        @root_dir         = Dir.pwd.to_s
-        @logs_dir         = "#@root_dir/logs"
-        @started_time     = Time.new.strftime('%H-%M-%S--%y-%m-%d')
-        @errors_iteration = 0 
+        @login_mode                 = mode 
+        @users                      = []
+        @medias                     = []
+        @log_counter                = 0
+        @login_counter              = 1
+        @login_status               = false
+        @lib_dir                    = "#{Dir.pwd}/lib"
+        @root_dir                   = Dir.pwd.to_s
+        @logs_dir                   = "#@root_dir/logs"
+        @started_time               = Time.new.strftime('%H-%M-%S--%y-%m-%d')
+        @errors_iteration           = 0
+        # auto increments 
+        @follows_auto_increment     = 0
+        @unfollows_auto_increment   = 0
+        @likes_auto_increment       = 0
+        @comments_auto_increment    = 0
 
         Configuration.new if @login_mode == :manual
 

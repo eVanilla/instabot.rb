@@ -9,7 +9,7 @@ module Login
     end
 
     log('trying to login', 'LOGIN')
-    puts '[+] '.cyan + "Trying to login into [#{username}] account"
+    puts '[+] '.cyan + "Trying to login as [#{username}]"
     login_page         = @agent.get('https://www.instagram.com/accounts/login/?force_classic_login')
     page_form          = login_page.forms.last
     page_form.username = username

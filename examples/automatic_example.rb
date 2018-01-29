@@ -15,11 +15,11 @@ Config.setup do |set|
   # set.change_ip_per_actions = # => under construction ...
 
 
-  set.wait_per_action       = 3
-  set.max_follow_per_day    = 500
-  set.max_unfollow_per_day  = 400
-  set.max_like_per_day      = 400
-  set.max_comment_per_day   = 20
+  set.wait_per_action       = 3 * 60
+  set.max_follow_per_day    = 200
+  set.max_unfollow_per_day  = 100
+  set.max_like_per_day      = 300
+  set.max_comment_per_day   = 60
 
   set.print_banner          = true
   set.log_status            = true
@@ -42,6 +42,6 @@ Config.setup do |set|
 end
 
 bot = Instabot.new
-bot.mode(:infinite) # => :cleanup, :infinite, ...
+bot.mode(:infinite)
 
 

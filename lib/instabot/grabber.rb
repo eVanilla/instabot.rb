@@ -92,8 +92,10 @@ module Grabber
       data        = parse_response(response.body)
       owners      = data.deep_find_all('owner')
       media_codes = data.deep_find_all('shortcode')
-      owners.map { |id| users << id['id'] }
-      media_codes.map { |code| medias << code }
+      log("didn't find anything by hashtag ##{tag}", 'GRABBER')
+      next if owners.nil? || media_codes.nil?
+      owners.map { |id| users << id['id'] if !id['id'].nil? }
+      media_codes.map { |code| medias << code if !code.nil? }
       used_tags << tag
     end
     Config.options.tags = Config.options.tags - used_tags
