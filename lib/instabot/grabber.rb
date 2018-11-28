@@ -50,16 +50,16 @@ module Grabber
 
   def set_user_information(data)
     @user_information = {
-      followers:   data.deep_find('followed_by')['count'],
-      following:   data.deep_find('follows')['count'],
+      followers:   data.deep_find('edge_followed_by')['count'],
+      following:   data.deep_find('edge_follow')['count'],
       follows_viewer: data.deep_find('follows_viewer'),
       followed_by_viewer: data.deep_find('followed_by_viewer'),
       requested_by_viewer: data.deep_find('requested_by_viewer'),
       is_private:  data.deep_find('is_private'),
       is_verified: data.deep_find('is_verified'),
       username:    data.deep_find('username'),
-      media_count:       data.deep_find('media')['count'],
-      medias:       data.deep_find('media')['nodes'],
+      media_count:       data.deep_find("edge_owner_to_timeline_media")["count"],
+      medias:       data.deep_find("edge_owner_to_timeline_media")["edges"],
       full_name:   data.deep_find('full_name'),
       id:          data.deep_find('id')
     }.with_indifferent_access
@@ -78,7 +78,7 @@ module Grabber
       is_private:          data.deep_find('is_private'),
       is_verified:         data.deep_find('is_verified'),
       requested_by_viewer: data.deep_find('requested_by_viewer'),
-      text:                data.deep_find('text') 
+      text:                data.deep_find('text')
     }.with_indifferent_access
   end
 
